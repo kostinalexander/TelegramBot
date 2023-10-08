@@ -4,17 +4,19 @@ import com.example.shelterBot.model.animals.Cat;
 import com.example.shelterBot.model.animals.Dog;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "users")
 public class Users {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long telegramUserId;
     @CreationTimestamp
@@ -45,6 +47,14 @@ public class Users {
         this.address = address;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getTelegramUserId() {
         return telegramUserId;
     }
@@ -59,14 +69,6 @@ public class Users {
 
     public void setFirstLoginDate(LocalDateTime firstLoginDate) {
         this.firstLoginDate = firstLoginDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

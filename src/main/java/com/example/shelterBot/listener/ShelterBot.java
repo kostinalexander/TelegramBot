@@ -1,8 +1,8 @@
 package com.example.shelterBot.listener;
 
 import com.example.shelterBot.config.BotConfig;
-import com.example.shelterBot.model.Users;
 import com.example.shelterBot.repository.UsersRepository;
+import com.example.shelterBot.service.UsersService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,16 +10,14 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
-import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,18 +29,26 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     @Autowired
     private UsersRepository userRepository;
+    private final UsersService usersService;
 
-    public ShelterBot(BotConfig config) {
+    static final String CAT_BUTTON = "CAT_BUTTON";
+    static final String DOG_BUTTON = "DOG_BUTTON";
+
+    static final String ERROR_TEXT = "Error occurred: ";
+
+    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService) {
         this.config = config;
-        List<BotCommand>commandList = new ArrayList<>();
+        this.userRepository = userRepository;
+        this.usersService = usersService;
+        List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "комманда для старта"));
         commandList.add(new BotCommand("/shelter", "команда для выбора приюта"));
         commandList.add(new BotCommand("/volunteer", "команда для вызова волонтёра"));
 
         try {
             this.execute(new SetMyCommands(commandList, new BotCommandScopeDefault(), null));
-        }catch (TelegramApiException e){
-            log.error("Error setting bot commands"+e.getMessage());
+        } catch (TelegramApiException e) {
+            log.error("Error setting bot commands" + e.getMessage());
         }
     }
 
@@ -65,8 +71,13 @@ public class ShelterBot extends TelegramLongPollingBot {
 
             switch (messageText) {
                 case "/start":
-                    registerUser(update.getMessage());
-                    startCommand(chatId, update.getMessage().getChat().getFirstName());
+                    var textMessage = update.getMessage();
+                    var telegramUser = textMessage.getFrom();
+                    registerUsers(telegramUser);
+                    String userName = update.getMessage().getChat().getUserName();
+                    String firstName = update.getMessage().getChat().getFirstName();
+                    String lastName = update.getMessage().getChat().getLastName();
+                    startCommand(chatId, userName, firstName, lastName);
                     break;
                 case "/shelter":
                     shelterCommand(chatId);
@@ -74,80 +85,46 @@ public class ShelterBot extends TelegramLongPollingBot {
                 case "/volunteer":
                     volunteerCommand(chatId);
                     break;
-                default:sendMessage(chatId,"Пока, что команда не поддерживается ");
+                default:
+                    sendMessage(chatId, "Пока, что команда не поддерживается ");
 
             }
-        }else if (update.hasCallbackQuery()) {
+        } else if (update.hasCallbackQuery()) {
             String callBackData = update.getCallbackQuery().getData();
             long messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
 
-            if (callBackData.equals("CAT_BUTTON")){
+            if (callBackData.equals(CAT_BUTTON)) {
                 String text = "Поздравляем, вы выбрали приют для кошек";
-                EditMessageText message = new EditMessageText();
-                message.setChatId(String.valueOf(chatId));
-                message.setText(text);
-                message.setMessageId(Integer.valueOf((int) messageId));
+                executeEditMessageText(text, chatId, messageId);
 
-                try {
-                    execute(message);
-                }catch (TelegramApiException e){
-                    log.info("Inline button complete" + e.getMessage());
-                }
-
-            } else if (callBackData.equals("DOG_BUTTON")) {
-                String text1 = "Отлично, вы выбрали приют для собак";
-                EditMessageText message1 = new EditMessageText();
-                message1.setChatId(String.valueOf(chatId));
-                message1.setText(text1);
-                message1.setMessageId(Integer.valueOf((int) messageId));
-
-                try {
-                    execute(message1);
-                }catch (TelegramApiException e){
-                    log.info("Inline button complete" + e.getMessage());
-                }
+            } else if (callBackData.equals(DOG_BUTTON)) {
+                String text = "Отлично, вы выбрали приют для собак";
+                executeEditMessageText(text, chatId, messageId);
             }
 
         }
 
     }
 
-    private void sendMessage(long chatId, String textToSend) {
-        SendMessage message = new SendMessage();
-        message.setChatId(String.valueOf(chatId));
-        message.setText(textToSend);
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-        }
 
-    }
-
-
-    private void startCommand(long chatId, String name) {
-        String answer = "Добро пожаловать в бот, " +
-                "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером, " +
-                "все необходимые команды вы сможете найти в меню";
-        log.info("Replied to user " + name);
-        sendMessage(chatId, answer);
-    }
-
-
-    private void registerUser(Message message) {
-
-        Long id = message.getChatId();
-        Chat chat = message.getChat();
-        Users user = new Users();
-        user.setId(id);
-        user.setFirstName(chat.getFirstName());
-        user.setLastName(chat.getLastName());
-        user.setFirstLoginDate(LocalDateTime.now());
-        if (userRepository.findById(id).isEmpty()) {
-            userRepository.save(user);
-            log.info("user saved " + user);
+    private void startCommand(long chatId, String userName, String firstName, String lastName) {
+        String textChat = "Добро пожаловать в бот, %s! %n " +
+                "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером. %n" +
+                "Все необходимые команды вы сможете найти в меню";
+        String fullName = userName + " " + firstName + " " + lastName;
+        if (userName == null & lastName == null) {
+            var formattedText = String.format(textChat, firstName);
+            sendMessage(chatId, formattedText);
+        } else if (fullName == null) {
+            sendMessage(chatId, textChat);
+        } else {
+            var formattedText = String.format(textChat, userName);
+            sendMessage(chatId, formattedText);
+            log.info("Replied to user " + fullName);
         }
     }
+
 
     private void shelterCommand(long chatId) {
         SendMessage message = new SendMessage();
@@ -157,31 +134,57 @@ public class ShelterBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
         List<InlineKeyboardButton> rowInline = new ArrayList<>();
-        var button = new InlineKeyboardButton();
-        button.setText("Приют для кошек");
-        button.setCallbackData("CAT_BUTTON");
+        var button1 = new InlineKeyboardButton();
+        button1.setText("Приют для кошек");
+        button1.setCallbackData("CAT_BUTTON");
 
-        var noButton = new InlineKeyboardButton();
-        noButton.setText("Приют для собак");
-        noButton.setCallbackData("DOG_BUTTON");
+        var button2 = new InlineKeyboardButton();
+        button2.setText("Приют для собак");
+        button2.setCallbackData("DOG_BUTTON");
 
-        rowInline.add(button);
-        rowInline.add(noButton);
+        rowInline.add(button1);
+        rowInline.add(button2);
 
         rowsInline.add(rowInline);
 
         markupInline.setKeyboard(rowsInline);
         message.setReplyMarkup(markupInline);
 
+        executeMessage(message);
+
+    }
+
+    private void volunteerCommand(long chatId) {
+        var text = "Повсем вопросам обращайтесь к https://t.me/Axekill93";
+        sendMessage(chatId, text);
+    }
+
+    private void executeEditMessageText(String text, long chatId, long messageId) {
+        EditMessageText editMessage = new EditMessageText();
+        editMessage.setChatId(String.valueOf(chatId));
+        editMessage.setText(text);
+        editMessage.setMessageId((int) messageId);
+        sendMessage(chatId, text);
+
+    }
+
+    private void executeMessage(SendMessage message) {
         try {
             execute(message);
-        }catch (TelegramApiException e){
-            log.info("Inline button complete" + e.getMessage());
+        } catch (TelegramApiException e) {
+            log.error(ERROR_TEXT + e.getMessage());
         }
     }
 
-     private void volunteerCommand(long chatId){
-       var text ="Повсем вопросам обращайтесь к https://t.me/Axekill93";
-        sendMessage(chatId,text);
-     }
+    private void sendMessage(long chatId, String textToSend) {
+        SendMessage message = new SendMessage();
+        message.setChatId(String.valueOf(chatId));
+        message.setText(textToSend);
+        executeMessage(message);
+    }
+
+
+    private void registerUsers(User telegramUser) {
+        usersService.findOrSaveUsers(telegramUser);
+    }
 }

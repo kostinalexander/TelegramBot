@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Service
@@ -29,10 +30,12 @@ public class UsersService {
             transientUser.setTelegramUserId(telegramUser.getId());
             transientUser.setFirstName(telegramUser.getFirstName());
             transientUser.setLastName(telegramUser.getLastName());
+            transientUser.setFirstLoginDate(LocalDateTime.now());
             return repository.save(transientUser);
-        }
+        } else {
 
-        return persistentUser;
+            return persistentUser;
+        }
     }
 
     public Users addUser(Users users) {
