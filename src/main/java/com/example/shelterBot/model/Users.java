@@ -14,6 +14,7 @@ import java.util.Objects;
 @Getter
 @Entity
 @Table(name = "users")
+
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,88 +48,44 @@ public class Users {
         this.address = address;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getTelegramUserId() {
-        return telegramUserId;
     }
 
     public void setTelegramUserId(Long telegramUserId) {
         this.telegramUserId = telegramUserId;
     }
 
-    public LocalDateTime getFirstLoginDate() {
-        return firstLoginDate;
-    }
-
     public void setFirstLoginDate(LocalDateTime firstLoginDate) {
         this.firstLoginDate = firstLoginDate;
-    }
-
-    public String getFirstName() {
-        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
-    public int getNumberPhone() {
-        return numberPhone;
-    }
-
     public void setNumberPhone(int numberPhone) {
         this.numberPhone = numberPhone;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public List<Cat> getCats() {
-        return cats;
-    }
-
     public void setCats(List<Cat> cats) {
         this.cats = cats;
-    }
-
-    public List<Dog> getDogs() {
-        return dogs;
     }
 
     public void setDogs(List<Dog> dogs) {

@@ -3,11 +3,13 @@ package com.example.shelterBot.model.shelter;
 import com.example.shelterBot.model.animals.Cat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "shelter_for_cats")
 public class ShelterForCats extends Shelter {
@@ -26,16 +28,8 @@ public class ShelterForCats extends Shelter {
 
     }
 
-    public long getId() {
-        return id;
-    }
-
     public void setId(long id) {
         this.id = id;
-    }
-
-    public List<Cat> getCats() {
-        return cats;
     }
 
     public void setCats(List<Cat> cats) {

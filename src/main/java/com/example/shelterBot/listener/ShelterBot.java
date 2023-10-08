@@ -28,11 +28,14 @@ public class ShelterBot extends TelegramLongPollingBot {
     final BotConfig config;
 
     @Autowired
-    private UsersRepository userRepository;
+    private final UsersRepository userRepository;
     private final UsersService usersService;
 
     static final String CAT_BUTTON = "CAT_BUTTON";
     static final String DOG_BUTTON = "DOG_BUTTON";
+    private static final String START = "/start";
+    private static final String SHELTERS = "/shelters";
+    private static final String VOLUNTEER = "/volunteer";
 
     static final String ERROR_TEXT = "Error occurred: ";
 
@@ -42,8 +45,15 @@ public class ShelterBot extends TelegramLongPollingBot {
         this.usersService = usersService;
         List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "комманда для старта"));
-        commandList.add(new BotCommand("/shelter", "команда для выбора приюта"));
+        commandList.add(new BotCommand("/shelters", "команда для выбора приюта"));
         commandList.add(new BotCommand("/volunteer", "команда для вызова волонтёра"));
+// пока оставлю так
+        List<BotCommand> catShelters = new ArrayList<>();
+        catShelters.add(new BotCommand("/shelter_data","расписание работы приюта и адрес, схема проезда"));
+        catShelters.add(new BotCommand("/security","контактные данные охраны для оформления пропуска на машину"));
+        catShelters.add(new BotCommand("/safety_precautions","рекомендации о технике безопасности на территории приюта"));
+
+
 
         try {
             this.execute(new SetMyCommands(commandList, new BotCommandScopeDefault(), null));
@@ -70,7 +80,7 @@ public class ShelterBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
             switch (messageText) {
-                case "/start":
+                case START -> {
                     var textMessage = update.getMessage();
                     var telegramUser = textMessage.getFrom();
                     registerUsers(telegramUser);
@@ -78,15 +88,12 @@ public class ShelterBot extends TelegramLongPollingBot {
                     String firstName = update.getMessage().getChat().getFirstName();
                     String lastName = update.getMessage().getChat().getLastName();
                     startCommand(chatId, userName, firstName, lastName);
-                    break;
-                case "/shelter":
-                    shelterCommand(chatId);
-                    break;
-                case "/volunteer":
-                    volunteerCommand(chatId);
-                    break;
-                default:
-                    sendMessage(chatId, "Пока, что команда не поддерживается ");
+                }
+                case SHELTERS -> shelterCommand(chatId);
+
+                case VOLUNTEER -> volunteerCommand(chatId);
+
+                default -> sendMessage(chatId, "Пока, что команда не поддерживается ");
 
             }
         } else if (update.hasCallbackQuery()) {
@@ -97,6 +104,7 @@ public class ShelterBot extends TelegramLongPollingBot {
             if (callBackData.equals(CAT_BUTTON)) {
                 String text = "Поздравляем, вы выбрали приют для кошек";
                 executeEditMessageText(text, chatId, messageId);
+
 
             } else if (callBackData.equals(DOG_BUTTON)) {
                 String text = "Отлично, вы выбрали приют для собак";

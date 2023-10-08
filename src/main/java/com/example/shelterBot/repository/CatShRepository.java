@@ -1,7 +1,6 @@
 package com.example.shelterBot.repository;
 
 
-import com.example.shelterBot.model.animals.Cat;
 import com.example.shelterBot.model.shelter.ShelterForCats;
 import org.springframework.data.jpa.repository.JpaRepository;
 
