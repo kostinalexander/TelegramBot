@@ -17,6 +17,9 @@ public class Users {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long telegramUserId;
+
+
+
     @CreationTimestamp
     private LocalDateTime firstLoginDate;
     private String firstName;
@@ -45,16 +48,17 @@ public class Users {
         this.address = address;
     }
 
+
+
+    public LocalDateTime getFirstLoginDate() {
+        return firstLoginDate;
+    }
     public Long getTelegramUserId() {
         return telegramUserId;
     }
 
     public void setTelegramUserId(Long telegramUserId) {
         this.telegramUserId = telegramUserId;
-    }
-
-    public LocalDateTime getFirstLoginDate() {
-        return firstLoginDate;
     }
 
     public void setFirstLoginDate(LocalDateTime firstLoginDate) {
@@ -150,7 +154,6 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                ", telegramUserId=" + telegramUserId +
                 ", firstLoginDate=" + firstLoginDate +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
