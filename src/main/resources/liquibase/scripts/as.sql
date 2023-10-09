@@ -69,4 +69,11 @@ alter table users
     add column telegram_user_id bigint,
 add column first_login_date timestamp;
 
+-- changeset akostin:22
+alter table users
+drop column telegram_user_id;
+
+-- changeset akostin:23
+alter table users
+    add column telegram_user_id bigint;
 
