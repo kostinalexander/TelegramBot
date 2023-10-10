@@ -34,30 +34,42 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     @Autowired
     private UsersRepository userRepository;
+    private final UsersService usersService;
+
+    static final String CAT_BUTTON = "CAT_BUTTON";
+    static final String DOG_BUTTON = "DOG_BUTTON";
+    private static final String START = "/start";
+    private static final String SHELTERS = "/shelters";
+    private static final String VOLUNTEER = "/volunteer";
+
+    static final String ERROR_TEXT = "Error occurred: ";
+
 
     /**
      * Конструктор, в котором содержится меню для бота с коммандами.
+     *
      * @param config
      */
-    public ShelterBot(BotConfig config) {
+    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService) {
         this.config = config;
-        List<BotCommand>commandList = new ArrayList<>();
+        this.userRepository = userRepository;
+        this.usersService = usersService;
+
+        List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "комманда для старта"));
         commandList.add(new BotCommand("/shelter", "команда для выбора приюта"));
         commandList.add(new BotCommand("/volunteer", "команда для вызова волонтёра"));
-        commandList.add(new BotCommand("/addresscat ","команда покажет вам адрес нашего приюта для кошек"));
+        commandList.add(new BotCommand("/addresscat ", "команда покажет вам адрес нашего приюта для кошек"));
         commandList.add(new BotCommand("/addressdog", "команда покажет вам адрес нашего приюта для собак"));
-        commandList.add(new BotCommand("/savecar","команда выдаст вам контактные данные для оформления пропуска"));
-        commandList.add(new BotCommand("/safety","команда выдаст ознакомит вас с техникой безопасности"));
+        commandList.add(new BotCommand("/savecar", "команда выдаст вам контактные данные для оформления пропуска"));
+        commandList.add(new BotCommand("/safety", "команда выдаст ознакомит вас с техникой безопасности"));
         commandList.add(new BotCommand("/datauser", "если вы хотите, чтобы мы вам позвонили, укажите /datauser (номер телефона)"));
-
-
 
 
         try {
             this.execute(new SetMyCommands(commandList, new BotCommandScopeDefault(), null));
-        }catch (TelegramApiException e){
-            log.error("Error setting bot commands"+e.getMessage());
+        } catch (TelegramApiException e) {
+            log.error("Error setting bot commands" + e.getMessage());
         }
     }
 
@@ -74,10 +86,8 @@ public class ShelterBot extends TelegramLongPollingBot {
     /**
      * Метод process, основной метод нашего бота. В нём будут содержаться, базовые ответы бота, пользователю
      * и обработка сообщений.
-     * Используется метод {@link ShelterBot#startCommand(long, String)}
      *
      * @param update
-     *
      */
     @Override
     public void onUpdateReceived(Update update) {
@@ -115,14 +125,14 @@ public class ShelterBot extends TelegramLongPollingBot {
                     safety(chatId);
                     break;
                 case "/datauser":
-                    if(dataUser(chatId)){
-                    sendMessage(chatId,"Укажите, пожалуйста, телефон для связи");}
-                    sendMessage(1298936886,update.getMessage().getText());
+                    if (dataUser(chatId)) {
+                        sendMessage(chatId, "Укажите, пожалуйста, телефон для связи");
+                    }
+                    sendMessage(1298936886, update.getMessage().getText());
                     break;
 
                 default:
                     sendMessage(chatId, "Извините, мы не можем ответить на этот вопрос.");
-                    volunteerCommand(chatId);
 
             }
         } else if (update.hasCallbackQuery()) {
@@ -152,6 +162,7 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     /**
      * Метод отвечающий за отправку сообщений
+     *
      * @param chatId
      * @param textToSend
      */
@@ -167,17 +178,12 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     }
 
-/**
- * Метод отвечающий за комманду start. Бот, приветствует пользователя в зависимости от его данных(имени, фамилии и никнейма)
- *@param chatId
- * @param name
- */
-    private void startCommand(long chatId, String name) {
-        String answer = "Добро пожаловать в бот, " +
-                "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером, " +
-                "все необходимые команды вы сможете найти в меню";
-        log.info("Replied to user " + name);
-        sendMessage(chatId, answer);
+    /**
+     * Метод отвечающий за комманду start. Бот, приветствует пользователя в зависимости от его данных(имени, фамилии и никнейма)
+     *
+     * @param chatId
+     */
+
     private void startCommand(long chatId, String userName, String firstName, String lastName) {
         String textChat = "Добро пожаловать в бот, %s! %n " +
                 "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером. %n" +
@@ -196,9 +202,9 @@ public class ShelterBot extends TelegramLongPollingBot {
     }
 
 
-
     /**
      * Метод определяющий какой приют выбрал пользователь
+     *
      * @param chatId
      */
     private void shelterCommand(long chatId) {
@@ -231,67 +237,68 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     /**
      * Метод вызывающий волонтёра.
+     *
      * @param chatId
      */
-     private void volunteerCommand(long chatId){
-       var text ="Повсем вопросам обращайтесь к https://t.me/Axekill93";
-        sendMessage(chatId,text);
-     }
-
-    /**
-     * метод указывающий на адрес приюта для собак
-     * @param chatId
-     */
-     private void addressDog(long chatId){
-         var text = "Приют находится по адресу г.Москва, ул.Брусилова 32Б";
-         sendMessage(chatId,text);
-     }
-
-    /**
-     * метод указывающий на адрес приюта для кошек
-     * @param chatId
-     */
-     private void addressCat(long chatId){
-         var text = "Приют находится по адресу г.Москва, ул.Искры 23А ";
-         sendMessage(chatId,text);
-     }
-
-    /**
-     * Метод для демонстрации контактного адреса для связи
-     * @param chatId
-     */
-     private void saveCar(long chatId){
-         var text = "Для оформления пропуска позвоните по номеру 89204579697, Александр";
-         sendMessage(chatId,text);
-     }
-
-    /**
-     *Метод с техникой безопасности
-     * @param chatId
-     */
-    private void safety(long chatId){
-         var text = "На территории приюта запрещено: " +
-                 "Распивать алкогольные напитки" +
-                 "Дразнить животных" +
-                 "Воровать животных" +
-                 "Проносить предметы угрожающие здоровью животных";
-         sendMessage(chatId,text);
-     }
-
-    /**
-     * Метод для записи контактов пользователя
-     * @param chatId
-     * @return
-     */
-     private boolean dataUser(long chatId){
-         return  true;
-     }
-
-
     private void volunteerCommand(long chatId) {
         var text = "Повсем вопросам обращайтесь к https://t.me/Axekill93";
         sendMessage(chatId, text);
     }
+
+    /**
+     * метод указывающий на адрес приюта для собак
+     *
+     * @param chatId
+     */
+    private void addressDog(long chatId) {
+        var text = "Приют находится по адресу г.Москва, ул.Брусилова 32Б";
+        sendMessage(chatId, text);
+    }
+
+    /**
+     * метод указывающий на адрес приюта для кошек
+     *
+     * @param chatId
+     */
+    private void addressCat(long chatId) {
+        var text = "Приют находится по адресу г.Москва, ул.Искры 23А ";
+        sendMessage(chatId, text);
+    }
+
+    /**
+     * Метод для демонстрации контактного адреса для связи
+     *
+     * @param chatId
+     */
+    private void saveCar(long chatId) {
+        var text = "Для оформления пропуска позвоните по номеру 89204579697, Александр";
+        sendMessage(chatId, text);
+    }
+
+    /**
+     * Метод с техникой безопасности
+     *
+     * @param chatId
+     */
+    private void safety(long chatId) {
+        var text = "На территории приюта запрещено: " +
+                "Распивать алкогольные напитки" +
+                "Дразнить животных" +
+                "Воровать животных" +
+                "Проносить предметы угрожающие здоровью животных";
+        sendMessage(chatId, text);
+    }
+
+    /**
+     * Метод для записи контактов пользователя
+     *
+     * @param chatId
+     * @return
+     */
+    private boolean dataUser(long chatId) {
+        return true;
+    }
+
 
     private void executeEditMessageText(String text, long chatId, long messageId) {
         EditMessageText editMessage = new EditMessageText();
@@ -310,12 +317,7 @@ public class ShelterBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendMessage(long chatId, String textToSend) {
-        SendMessage message = new SendMessage();
-        message.setChatId(String.valueOf(chatId));
-        message.setText(textToSend);
-        executeMessage(message);
-    }
+
 
 
     private void registerUsers(User telegramUser) {
