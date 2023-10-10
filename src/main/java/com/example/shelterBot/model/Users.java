@@ -4,20 +4,17 @@ import com.example.shelterBot.model.animals.Cat;
 import com.example.shelterBot.model.animals.Dog;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
 @Entity
 @Table(name = "users")
-
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long telegramUserId;
     @CreationTimestamp
@@ -48,44 +45,93 @@ public class Users {
         this.address = address;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+
+
+    public LocalDateTime getFirstLoginDate() {
+        return firstLoginDate;
+    }
+    public Long getTelegramUserId() {
+        return telegramUserId;
     }
 
     public void setTelegramUserId(Long telegramUserId) {
         this.telegramUserId = telegramUserId;
     }
 
+    public LocalDateTime getFirstLoginDate() {
+        return firstLoginDate;
+    }
+
     public void setFirstLoginDate(LocalDateTime firstLoginDate) {
         this.firstLoginDate = firstLoginDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
+    public int getNumberPhone() {
+        return numberPhone;
+    }
+
     public void setNumberPhone(int numberPhone) {
         this.numberPhone = numberPhone;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public List<Cat> getCats() {
+        return cats;
+    }
+
     public void setCats(List<Cat> cats) {
         this.cats = cats;
+    }
+
+    public List<Dog> getDogs() {
+        return dogs;
     }
 
     public void setDogs(List<Dog> dogs) {

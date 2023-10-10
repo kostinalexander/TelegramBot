@@ -1,6 +1,7 @@
 package com.example.shelterBot.listener;
 
 import com.example.shelterBot.config.BotConfig;
+import com.example.shelterBot.model.Users;
 import com.example.shelterBot.repository.UsersRepository;
 import com.example.shelterBot.service.UsersService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.Chat;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
@@ -17,7 +20,9 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.generics.TelegramBot;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,37 +33,31 @@ public class ShelterBot extends TelegramLongPollingBot {
     final BotConfig config;
 
     @Autowired
-    private final UsersRepository userRepository;
-    private final UsersService usersService;
+    private UsersRepository userRepository;
 
-    static final String CAT_BUTTON = "CAT_BUTTON";
-    static final String DOG_BUTTON = "DOG_BUTTON";
-    private static final String START = "/start";
-    private static final String SHELTERS = "/shelters";
-    private static final String VOLUNTEER = "/volunteer";
-
-    static final String ERROR_TEXT = "Error occurred: ";
-
-    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService) {
+    /**
+     * Конструктор, в котором содержится меню для бота с коммандами.
+     * @param config
+     */
+    public ShelterBot(BotConfig config) {
         this.config = config;
-        this.userRepository = userRepository;
-        this.usersService = usersService;
-        List<BotCommand> commandList = new ArrayList<>();
+        List<BotCommand>commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "комманда для старта"));
-        commandList.add(new BotCommand("/shelters", "команда для выбора приюта"));
+        commandList.add(new BotCommand("/shelter", "команда для выбора приюта"));
         commandList.add(new BotCommand("/volunteer", "команда для вызова волонтёра"));
-// пока оставлю так
-        List<BotCommand> catShelters = new ArrayList<>();
-        catShelters.add(new BotCommand("/shelter_data","расписание работы приюта и адрес, схема проезда"));
-        catShelters.add(new BotCommand("/security","контактные данные охраны для оформления пропуска на машину"));
-        catShelters.add(new BotCommand("/safety_precautions","рекомендации о технике безопасности на территории приюта"));
+        commandList.add(new BotCommand("/addresscat ","команда покажет вам адрес нашего приюта для кошек"));
+        commandList.add(new BotCommand("/addressdog", "команда покажет вам адрес нашего приюта для собак"));
+        commandList.add(new BotCommand("/savecar","команда выдаст вам контактные данные для оформления пропуска"));
+        commandList.add(new BotCommand("/safety","команда выдаст ознакомит вас с техникой безопасности"));
+        commandList.add(new BotCommand("/datauser", "если вы хотите, чтобы мы вам позвонили, укажите /datauser (номер телефона)"));
+
 
 
 
         try {
             this.execute(new SetMyCommands(commandList, new BotCommandScopeDefault(), null));
-        } catch (TelegramApiException e) {
-            log.error("Error setting bot commands" + e.getMessage());
+        }catch (TelegramApiException e){
+            log.error("Error setting bot commands"+e.getMessage());
         }
     }
 
@@ -72,6 +71,14 @@ public class ShelterBot extends TelegramLongPollingBot {
         return config.getToken();
     }
 
+    /**
+     * Метод process, основной метод нашего бота. В нём будут содержаться, базовые ответы бота, пользователю
+     * и обработка сообщений.
+     * Используется метод {@link ShelterBot#startCommand(long, String)}
+     *
+     * @param update
+     *
+     */
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -80,7 +87,7 @@ public class ShelterBot extends TelegramLongPollingBot {
             long chatId = update.getMessage().getChatId();
 
             switch (messageText) {
-                case START -> {
+                case "/start":
                     var textMessage = update.getMessage();
                     var telegramUser = textMessage.getFrom();
                     registerUsers(telegramUser);
@@ -88,12 +95,34 @@ public class ShelterBot extends TelegramLongPollingBot {
                     String firstName = update.getMessage().getChat().getFirstName();
                     String lastName = update.getMessage().getChat().getLastName();
                     startCommand(chatId, userName, firstName, lastName);
-                }
-                case SHELTERS -> shelterCommand(chatId);
+                    break;
+                case "/shelter":
+                    shelterCommand(chatId);
+                    break;
+                case "/volunteer":
+                    volunteerCommand(chatId);
+                    break;
+                case "/addresscat":
+                    addressCat(chatId);
+                    break;
+                case "/addressdog":
+                    addressDog(chatId);
+                    break;
+                case "/savecar":
+                    saveCar(chatId);
+                    break;
+                case "/safety":
+                    safety(chatId);
+                    break;
+                case "/datauser":
+                    if(dataUser(chatId)){
+                    sendMessage(chatId,"Укажите, пожалуйста, телефон для связи");}
+                    sendMessage(1298936886,update.getMessage().getText());
+                    break;
 
-                case VOLUNTEER -> volunteerCommand(chatId);
-
-                default -> sendMessage(chatId, "Пока, что команда не поддерживается ");
+                default:
+                    sendMessage(chatId, "Извините, мы не можем ответить на этот вопрос.");
+                    volunteerCommand(chatId);
 
             }
         } else if (update.hasCallbackQuery()) {
@@ -105,6 +134,12 @@ public class ShelterBot extends TelegramLongPollingBot {
                 String text = "Поздравляем, вы выбрали приют для кошек";
                 executeEditMessageText(text, chatId, messageId);
 
+            } else if (callBackData.equals("DOG_BUTTON")) {
+                String text1 = "Отлично, вы выбрали приют для собак";
+                EditMessageText message1 = new EditMessageText();
+                message1.setChatId(String.valueOf(chatId));
+                message1.setText(text1);
+                message1.setMessageId(Integer.valueOf((int) messageId));
 
             } else if (callBackData.equals(DOG_BUTTON)) {
                 String text = "Отлично, вы выбрали приют для собак";
@@ -115,7 +150,34 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     }
 
+    /**
+     * Метод отвечающий за отправку сообщений
+     * @param chatId
+     * @param textToSend
+     */
 
+    private void sendMessage(long chatId, String textToSend) {
+        SendMessage message = new SendMessage();
+        message.setChatId(String.valueOf(chatId));
+        message.setText(textToSend);
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+        }
+
+    }
+
+/**
+ * Метод отвечающий за комманду start. Бот, приветствует пользователя в зависимости от его данных(имени, фамилии и никнейма)
+ *@param chatId
+ * @param name
+ */
+    private void startCommand(long chatId, String name) {
+        String answer = "Добро пожаловать в бот, " +
+                "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером, " +
+                "все необходимые команды вы сможете найти в меню";
+        log.info("Replied to user " + name);
+        sendMessage(chatId, answer);
     private void startCommand(long chatId, String userName, String firstName, String lastName) {
         String textChat = "Добро пожаловать в бот, %s! %n " +
                 "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером. %n" +
@@ -134,6 +196,11 @@ public class ShelterBot extends TelegramLongPollingBot {
     }
 
 
+
+    /**
+     * Метод определяющий какой приют выбрал пользователь
+     * @param chatId
+     */
     private void shelterCommand(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
@@ -161,6 +228,65 @@ public class ShelterBot extends TelegramLongPollingBot {
         executeMessage(message);
 
     }
+
+    /**
+     * Метод вызывающий волонтёра.
+     * @param chatId
+     */
+     private void volunteerCommand(long chatId){
+       var text ="Повсем вопросам обращайтесь к https://t.me/Axekill93";
+        sendMessage(chatId,text);
+     }
+
+    /**
+     * метод указывающий на адрес приюта для собак
+     * @param chatId
+     */
+     private void addressDog(long chatId){
+         var text = "Приют находится по адресу г.Москва, ул.Брусилова 32Б";
+         sendMessage(chatId,text);
+     }
+
+    /**
+     * метод указывающий на адрес приюта для кошек
+     * @param chatId
+     */
+     private void addressCat(long chatId){
+         var text = "Приют находится по адресу г.Москва, ул.Искры 23А ";
+         sendMessage(chatId,text);
+     }
+
+    /**
+     * Метод для демонстрации контактного адреса для связи
+     * @param chatId
+     */
+     private void saveCar(long chatId){
+         var text = "Для оформления пропуска позвоните по номеру 89204579697, Александр";
+         sendMessage(chatId,text);
+     }
+
+    /**
+     *Метод с техникой безопасности
+     * @param chatId
+     */
+    private void safety(long chatId){
+         var text = "На территории приюта запрещено: " +
+                 "Распивать алкогольные напитки" +
+                 "Дразнить животных" +
+                 "Воровать животных" +
+                 "Проносить предметы угрожающие здоровью животных";
+         sendMessage(chatId,text);
+     }
+
+    /**
+     * Метод для записи контактов пользователя
+     * @param chatId
+     * @return
+     */
+     private boolean dataUser(long chatId){
+         return  true;
+     }
+
 
     private void volunteerCommand(long chatId) {
         var text = "Повсем вопросам обращайтесь к https://t.me/Axekill93";
