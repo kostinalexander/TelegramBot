@@ -144,13 +144,6 @@ public class ShelterBot extends TelegramLongPollingBot {
                 String text = "Поздравляем, вы выбрали приют для кошек";
                 executeEditMessageText(text, chatId, messageId);
 
-            } else if (callBackData.equals("DOG_BUTTON")) {
-                String text1 = "Отлично, вы выбрали приют для собак";
-                EditMessageText message1 = new EditMessageText();
-                message1.setChatId(String.valueOf(chatId));
-                message1.setText(text1);
-                message1.setMessageId(Integer.valueOf((int) messageId));
-
             } else if (callBackData.equals(DOG_BUTTON)) {
                 String text = "Отлично, вы выбрали приют для собак";
                 executeEditMessageText(text, chatId, messageId);
