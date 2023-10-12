@@ -4,32 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="мержнул">
+    <list default="true" id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="добавил зависимости на swagger и немного кода">
       <change afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/dr.sql" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/shelters.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_40__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_40__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_41__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/ShelterBotApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/ShelterBotApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/DogShelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/DogShelter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/Shelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/Shelter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/ShelterForCats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/ShelterForCats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/changelog-master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/changelog-master.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/ShelterBotApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/ShelterBotApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/DogShelter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/DogShelter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/Shelter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/Shelter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/ShelterForCats.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/ShelterForCats.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatShService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/liquibase/changelog-master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/liquibase/changelog-master.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697033182910</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="добавил зависимости на swagger и немного кода">
+      <option name="closed" value="true" />
+      <created>1697117757904</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697117757904</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +205,8 @@
     <MESSAGE value="новый бот." />
     <MESSAGE value="Задания от Алексея." />
     <MESSAGE value="мержнул" />
-    <option name="LAST_COMMIT_MESSAGE" value="мержнул" />
+    <MESSAGE value="добавил зависимости на swagger и немного кода" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил зависимости на swagger и немного кода" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>

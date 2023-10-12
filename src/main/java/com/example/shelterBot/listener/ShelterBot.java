@@ -118,13 +118,14 @@ public class ShelterBot extends TelegramLongPollingBot {
 
             switch (messageText) {
                 case "/start":
-                    var textMessage = update.getMessage();
-                    var telegramUser = textMessage.getFrom();
-                    registerUsers(telegramUser);
+
                     String userName = update.getMessage().getChat().getUserName();
                     String firstName = update.getMessage().getChat().getFirstName();
                     String lastName = update.getMessage().getChat().getLastName();
                     startCommand(chatId, userName, firstName, lastName);
+                    var textMessage = update.getMessage();
+                    var telegramUser = textMessage.getFrom();
+                    registerUsers(telegramUser,chatId);
                     break;
                 case "/shelter":
                     shelterCommand(chatId);
@@ -387,7 +388,11 @@ public class ShelterBot extends TelegramLongPollingBot {
     }
 
 
-    private void registerUsers(User telegramUser) {
+    private void registerUsers(User telegramUser, long chatId){
+
         usersService.findOrSaveUsers(telegramUser);
+        if (usersService.findOrSaveUsers(telegramUser) != null) {
+            shelterCommand(chatId);
+        }
     }
 }
