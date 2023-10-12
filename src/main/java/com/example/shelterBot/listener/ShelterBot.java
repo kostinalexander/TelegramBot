@@ -1,18 +1,18 @@
 package com.example.shelterBot.listener;
 
 import com.example.shelterBot.config.BotConfig;
-import com.example.shelterBot.model.Users;
 import com.example.shelterBot.repository.UsersRepository;
 import com.example.shelterBot.service.UsersService;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
-import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
@@ -20,9 +20,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.generics.TelegramBot;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +31,32 @@ public class ShelterBot extends TelegramLongPollingBot {
     final BotConfig config;
 
     @Autowired
-    private UsersRepository userRepository;
+    private final UsersRepository userRepository;
     private final UsersService usersService;
 
     static final String CAT_BUTTON = "CAT_BUTTON";
     static final String DOG_BUTTON = "DOG_BUTTON";
+    static final String DOG_SHELTER = "Отлично, вы выбрали приют для собак";
+    static final String CAT_SHELTER = "Отлично, вы выбрали приют для кошек";
+    static final String FAQ = """
+            приют находится по адресу-г.Москва, ул.Искры 23А.
+                        
+            время работы приюта 9:00-18:00 без выходных.
+                        
+            """;
+    static final String FAQD = """
+            приют находится по адресу-г.Москва, ул.Брусилова 32Б.
+                        
+            время работы приюта 9:00-18:00 без выходных.
+                        
+            """;
+    static final String SAFETY = """
+            На территории приюта запрещено:
+                            Распивать алкогольные напитки
+                            Дразнить животных
+                            Воровать животных
+                            Проносить предметы угрожающие здоровью животных
+            """;
     private static final String START = "/start";
     private static final String SHELTERS = "/shelters";
     private static final String VOLUNTEER = "/volunteer";
@@ -56,14 +75,14 @@ public class ShelterBot extends TelegramLongPollingBot {
         this.usersService = usersService;
 
         List<BotCommand> commandList = new ArrayList<>();
-        commandList.add(new BotCommand("/start", "комманда для старта"));
-        commandList.add(new BotCommand("/shelter", "команда для выбора приюта"));
-        commandList.add(new BotCommand("/volunteer", "команда для вызова волонтёра"));
-        commandList.add(new BotCommand("/addresscat ", "команда покажет вам адрес нашего приюта для кошек"));
-        commandList.add(new BotCommand("/addressdog", "команда покажет вам адрес нашего приюта для собак"));
-        commandList.add(new BotCommand("/savecar", "команда выдаст вам контактные данные для оформления пропуска"));
-        commandList.add(new BotCommand("/safety", "команда выдаст ознакомит вас с техникой безопасности"));
-        commandList.add(new BotCommand("/datauser", "если вы хотите, чтобы мы вам позвонили, укажите /datauser (номер телефона)"));
+        commandList.add(new BotCommand("/start", "обновить"));
+        commandList.add(new BotCommand("/shelter", "выбрать приют"));
+        commandList.add(new BotCommand("/volunteer", "волонтёр"));
+        commandList.add(new BotCommand("/addresscat ", "адрес приюта для кошек"));
+        commandList.add(new BotCommand("/addressdog", "команда адрес приюта для собак"));
+        commandList.add(new BotCommand("/savecar", "оформление пропуска"));
+        commandList.add(new BotCommand("/safety", "техникой безопасности"));
+        commandList.add(new BotCommand("/datauser", "оставить данные"));
 
 
         try {
@@ -89,6 +108,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      *
      * @param update
      */
+    @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -139,37 +159,20 @@ public class ShelterBot extends TelegramLongPollingBot {
             String callBackData = update.getCallbackQuery().getData();
             long messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
+            String queryId=update.getCallbackQuery().getId();
 
             if (callBackData.equals(CAT_BUTTON)) {
-                String text = "Поздравляем, вы выбрали приют для кошек";
-                executeEditMessageText(text, chatId, messageId);
+                executeEditMessageText(CAT_SHELTER, chatId, messageId);
 
             } else if (callBackData.equals(DOG_BUTTON)) {
-                String text = "Отлично, вы выбрали приют для собак";
-                executeEditMessageText(text, chatId, messageId);
+                executeEditMessageText(DOG_SHELTER, chatId, messageId);
             }
+            buttonTap(chatId, queryId, callBackData, (int) messageId);
 
         }
 
     }
 
-    /**
-     * Метод отвечающий за отправку сообщений
-     *
-     * @param chatId
-     * @param textToSend
-     */
-
-    private void sendMessage(long chatId, String textToSend) {
-        SendMessage message = new SendMessage();
-        message.setChatId(String.valueOf(chatId));
-        message.setText(textToSend);
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-        }
-
-    }
 
     /**
      * Метод отвечающий за комманду start. Бот, приветствует пользователя в зависимости от его данных(имени, фамилии и никнейма)
@@ -210,11 +213,11 @@ public class ShelterBot extends TelegramLongPollingBot {
         List<InlineKeyboardButton> rowInline = new ArrayList<>();
         var button1 = new InlineKeyboardButton();
         button1.setText("Приют для кошек");
-        button1.setCallbackData("CAT_BUTTON");
+        button1.setCallbackData(CAT_BUTTON);
 
         var button2 = new InlineKeyboardButton();
         button2.setText("Приют для собак");
-        button2.setCallbackData("DOG_BUTTON");
+        button2.setCallbackData(DOG_BUTTON);
 
         rowInline.add(button1);
         rowInline.add(button2);
@@ -227,6 +230,7 @@ public class ShelterBot extends TelegramLongPollingBot {
         executeMessage(message);
 
     }
+
 
     /**
      * Метод вызывающий волонтёра.
@@ -292,6 +296,79 @@ public class ShelterBot extends TelegramLongPollingBot {
         return true;
     }
 
+    private InlineKeyboardMarkup cat;
+    private InlineKeyboardMarkup dog;
+
+    private void buttonTap(Long id, String queryId, String data, int msgId) throws TelegramApiException {
+
+
+        List<List<InlineKeyboardButton>> catsInline = new ArrayList<>();
+
+        List<InlineKeyboardButton> rowInline = new ArrayList<>();
+
+        var button1 = new InlineKeyboardButton();
+        button1.setText("FAQ");
+        button1.setCallbackData(FAQ);
+
+        var button2 = new InlineKeyboardButton();
+        button2.setText("ТБ");
+        button2.setCallbackData(SAFETY);
+
+        rowInline.add(button1);
+        rowInline.add(button2);
+        catsInline.add(rowInline);
+        cat.setKeyboard(catsInline);
+
+        List<List<InlineKeyboardButton>> dogsInline = new ArrayList<>();
+
+        List<InlineKeyboardButton> rowInline2 = new ArrayList<>();
+
+        var bt = new InlineKeyboardButton();
+        button1.setText("FAQ");
+        button1.setCallbackData(FAQ);
+
+        var bt2 = new InlineKeyboardButton();
+        button2.setText("ТБ");
+        button2.setCallbackData(SAFETY);
+
+        rowInline.add(bt);
+        rowInline.add(bt2);
+        catsInline.add(rowInline2);
+        dog.setKeyboard(dogsInline);
+
+        EditMessageText newTxt = EditMessageText.builder()
+                .chatId(id.toString())
+                .messageId(msgId).text("").build();
+
+        EditMessageReplyMarkup newKb = EditMessageReplyMarkup.builder()
+                .chatId(id.toString()).messageId(msgId).build();
+        if (data.equals(CAT_BUTTON)) {
+            newTxt.setText(CAT_SHELTER);
+            newKb.setReplyMarkup(cat);
+        } else if (data.equals(DOG_BUTTON)) {
+            newTxt.setText(DOG_SHELTER);
+            newKb.setReplyMarkup(dog);
+        }
+        AnswerCallbackQuery close = AnswerCallbackQuery.builder()
+                .callbackQueryId(queryId).build();
+
+        execute(close);
+        execute(newTxt);
+        execute(newKb);
+    }
+
+    /**
+     * Метод отвечающий за отправку сообщений
+     *
+     * @param chatId
+     * @param textToSend
+     */
+    private void sendMessage(long chatId, String textToSend) {
+        SendMessage message = new SendMessage();
+        message.setChatId(String.valueOf(chatId));
+        message.setText(textToSend);
+        executeMessage(message);
+    }
 
     private void executeEditMessageText(String text, long chatId, long messageId) {
         EditMessageText editMessage = new EditMessageText();
@@ -299,7 +376,6 @@ public class ShelterBot extends TelegramLongPollingBot {
         editMessage.setText(text);
         editMessage.setMessageId((int) messageId);
         sendMessage(chatId, text);
-
     }
 
     private void executeMessage(SendMessage message) {
@@ -309,8 +385,6 @@ public class ShelterBot extends TelegramLongPollingBot {
             log.error(ERROR_TEXT + e.getMessage());
         }
     }
-
-
 
 
     private void registerUsers(User telegramUser) {
