@@ -31,7 +31,7 @@ public class CatService {
                 }).orElse(null);
     }
     public void deleteCat(Long id) {
-        repository.deleteById(id);
+         repository.deleteById(id);
     }
 
     public Collection<Cat> getAll(){

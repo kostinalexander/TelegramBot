@@ -5,9 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="мержнул">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/controllerTests/ControllerCatTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/controllerTests/ControllerCatsShTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/controllerTests/ControllerDogTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/controllerTests/ControllerDogsShelterTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/controllerTests/ControllerVolunteerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/controllerTests/UserTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/serviceTests/CatServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/serviceTests/CatShelterServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/serviceTests/DogServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/serviceTests/DogShServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/serviceTests/UsersServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/serviceTests/VolunteerServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/shelterBot/tests/util/SendMessageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7fc8a63c-add2-4add-ba1b-3225ca15136c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7fc8a63c-add2-4add-ba1b-3225ca15136c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_40__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_40__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_41__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/CatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/CatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/ShelterBotApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/ShelterBotApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotInitializer.class" afterDir="false" />
@@ -55,7 +75,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature-Andrey" />
+        <entry key="$PROJECT_DIR$" value="feature-Alexander" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,9 +90,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2WM1C2NCWUokncjYUjC0tVTIlRr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -80,46 +100,113 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Notification.DisplayName-DoNotAsk-Vcs Important Messages": "VCS important messages",
-    "Notification.DoNotAsk-Vcs Important Messages": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "last_opened_file_path": "C:/Users/Александр/IdeaProjects/tgBotForAnimalShelter",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "spring.configuration.checksum": "d8f7ee3051279bfa708e03c51aa474a2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Notification.DisplayName-DoNotAsk-Vcs Important Messages&quot;: &quot;VCS important messages&quot;,
+    &quot;Notification.DoNotAsk-Vcs Important Messages&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Александр/IdeaProjects/primer animal shelter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d8f7ee3051279bfa708e03c51aa474a2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected="Application.ShelterBotApplication">
-    <configuration name="ShelterBotApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.ShelterBotApplication" />
+}</component>
+  <component name="RunManager" selected="JUnit.SendMessageTest.sendMessageTest">
+    <configuration name="CatServiceTests.addCatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="shelterBot" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.shelterBot.*" />
+          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
+      <option name="METHOD_NAME" value="addCatTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatServiceTests.editCatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelterBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
+      <option name="METHOD_NAME" value="editCatTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatServiceTests.getCatWithId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelterBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
+      <option name="METHOD_NAME" value="getCatWithId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatServiceTests.shouldReturnTrueWhenDeleteAnimalByIdCalled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelterBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
+      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
+      <option name="METHOD_NAME" value="shouldReturnTrueWhenDeleteAnimalByIdCalled" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SendMessageTest.sendMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shelterBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.shelterBot.tests.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.util" />
+      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.util.SendMessageTest" />
+      <option name="METHOD_NAME" value="sendMessageTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -144,7 +231,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ShelterBotApplication" />
+        <item itemvalue="JUnit.SendMessageTest.sendMessageTest" />
+        <item itemvalue="JUnit.CatServiceTests.shouldReturnTrueWhenDeleteAnimalByIdCalled" />
+        <item itemvalue="JUnit.CatServiceTests.editCatTest" />
+        <item itemvalue="JUnit.CatServiceTests.addCatTest" />
+        <item itemvalue="JUnit.CatServiceTests.getCatWithId" />
       </list>
     </recent_temporary>
   </component>
@@ -160,6 +251,7 @@
       <workItem from="1696674501148" duration="3667000" />
       <workItem from="1696771500704" duration="5040000" />
       <workItem from="1696869360090" duration="428000" />
+      <workItem from="1697353980106" duration="5486000" />
     </task>
     <task id="LOCAL-00001" summary="новый бот.">
       <option name="closed" value="true" />
