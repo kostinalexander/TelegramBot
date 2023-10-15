@@ -31,12 +31,10 @@ public class MenuServiceCat {
         KeyboardRow row2=new KeyboardRow();
         KeyboardRow row3=new KeyboardRow();
         KeyboardRow row4=new KeyboardRow();
-        KeyboardRow row5=new KeyboardRow();
         row1.add(new KeyboardButton("О приюте"));
-        row2.add(new KeyboardButton("местоположение и график работы"));
-        row3.add(new KeyboardButton("оформить пропуск"));
-        row4.add(new KeyboardButton("оставить свои контактные данные"));
-        row5.add(new KeyboardButton("позвать волонтера"));
+        row2.add(new KeyboardButton("Как взять животное из приюта"));
+        row3.add(new KeyboardButton("Прислать отчет о питомце"));
+        row4.add(new KeyboardButton("позвать волонтера"));
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
     }
