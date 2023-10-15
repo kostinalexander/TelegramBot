@@ -2,6 +2,8 @@ package com.example.shelterBot.listener;
 
 import com.example.shelterBot.config.BotConfig;
 import com.example.shelterBot.repository.UsersRepository;
+import com.example.shelterBot.service.MenuServiceCat;
+import com.example.shelterBot.service.MenuServiceDog;
 import com.example.shelterBot.service.UsersService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -9,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
@@ -33,6 +37,9 @@ public class ShelterBot extends TelegramLongPollingBot {
     @Autowired
     private final UsersRepository userRepository;
     private final UsersService usersService;
+    private final MenuServiceCat menuServiceCat;
+    private final MenuServiceDog menuServiceDog;
+
 
     static final String CAT_BUTTON = "CAT_BUTTON";
     static final String DOG_BUTTON = "DOG_BUTTON";
@@ -68,11 +75,16 @@ public class ShelterBot extends TelegramLongPollingBot {
      * Конструктор, в котором содержится меню для бота с коммандами.
      *
      * @param config
+     * @param menuService
+     * @param menuServiceCat
+     * @param menuServiceDog
      */
-    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService) {
+    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog) {
         this.config = config;
         this.userRepository = userRepository;
         this.usersService = usersService;
+        this.menuServiceCat = menuServiceCat;
+        this.menuServiceDog = menuServiceDog;
 
         List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "обновить"));
@@ -118,17 +130,19 @@ public class ShelterBot extends TelegramLongPollingBot {
 
             switch (messageText) {
                 case "/start":
-
                     String userName = update.getMessage().getChat().getUserName();
                     String firstName = update.getMessage().getChat().getFirstName();
                     String lastName = update.getMessage().getChat().getLastName();
                     startCommand(chatId, userName, firstName, lastName);
+
                     var textMessage = update.getMessage();
                     var telegramUser = textMessage.getFrom();
-                    registerUsers(telegramUser,chatId);
+                    registerUsers(telegramUser, chatId);
                     break;
                 case "/shelter":
                     shelterCommand(chatId);
+                    menuCat(chatId);
+                    menuDog(chatId);
                     break;
                 case "/volunteer":
                     volunteerCommand(chatId);
@@ -158,17 +172,19 @@ public class ShelterBot extends TelegramLongPollingBot {
             }
         } else if (update.hasCallbackQuery()) {
             String callBackData = update.getCallbackQuery().getData();
+            CallbackQuery callbackQuery = update.getCallbackQuery();
             long messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
-            String queryId=update.getCallbackQuery().getId();
+            String queryId = update.getCallbackQuery().getId();
 
             if (callBackData.equals(CAT_BUTTON)) {
                 executeEditMessageText(CAT_SHELTER, chatId, messageId);
+                execute(processCallbackQuery(callbackQuery));
 
             } else if (callBackData.equals(DOG_BUTTON)) {
                 executeEditMessageText(DOG_SHELTER, chatId, messageId);
+                execute(processCallbackQuery(callbackQuery));
             }
-            buttonTap(chatId, queryId, callBackData, (int) messageId);
 
         }
 
@@ -182,7 +198,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
 
     private void startCommand(long chatId, String userName, String firstName, String lastName) {
-        String textChat = "Добро пожаловать в бот, %s! %n " +
+        String textChat = "Добро пожаловать в бот, %s! %n" +
                 "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером. %n" +
                 "Все необходимые команды вы сможете найти в меню";
         String fullName = userName + " " + firstName + " " + lastName;
@@ -297,45 +313,8 @@ public class ShelterBot extends TelegramLongPollingBot {
         return true;
     }
 
-    private InlineKeyboardMarkup cat;
-    private InlineKeyboardMarkup dog;
 
-    private void buttonTap(Long id, String queryId, String data, int msgId) throws TelegramApiException {
-
-
-        List<List<InlineKeyboardButton>> catsInline = new ArrayList<>();
-
-        List<InlineKeyboardButton> rowInline = new ArrayList<>();
-
-        var button1 = new InlineKeyboardButton();
-        button1.setText("FAQ");
-        button1.setCallbackData(FAQ);
-
-        var button2 = new InlineKeyboardButton();
-        button2.setText("ТБ");
-        button2.setCallbackData(SAFETY);
-
-        rowInline.add(button1);
-        rowInline.add(button2);
-        catsInline.add(rowInline);
-        cat.setKeyboard(catsInline);
-
-        List<List<InlineKeyboardButton>> dogsInline = new ArrayList<>();
-
-        List<InlineKeyboardButton> rowInline2 = new ArrayList<>();
-
-        var bt = new InlineKeyboardButton();
-        button1.setText("FAQ");
-        button1.setCallbackData(FAQ);
-
-        var bt2 = new InlineKeyboardButton();
-        button2.setText("ТБ");
-        button2.setCallbackData(SAFETY);
-
-        rowInline.add(bt);
-        rowInline.add(bt2);
-        catsInline.add(rowInline2);
-        dog.setKeyboard(dogsInline);
+    private void buttonTap(Long id, long chatId, String queryId, String data, int msgId) throws TelegramApiException {
 
         EditMessageText newTxt = EditMessageText.builder()
                 .chatId(id.toString())
@@ -343,20 +322,27 @@ public class ShelterBot extends TelegramLongPollingBot {
 
         EditMessageReplyMarkup newKb = EditMessageReplyMarkup.builder()
                 .chatId(id.toString()).messageId(msgId).build();
+
         if (data.equals(CAT_BUTTON)) {
             newTxt.setText(CAT_SHELTER);
-            newKb.setReplyMarkup(cat);
+            menuCat(chatId);
+
         } else if (data.equals(DOG_BUTTON)) {
             newTxt.setText(DOG_SHELTER);
-            newKb.setReplyMarkup(dog);
+            menuDog(chatId);
         }
         AnswerCallbackQuery close = AnswerCallbackQuery.builder()
                 .callbackQueryId(queryId).build();
 
         execute(close);
         execute(newTxt);
-        execute(newKb);
     }
+
+    private BotApiMethod<?> processCallbackQuery(CallbackQuery buttonQuery) {
+        long chatId = buttonQuery.getMessage().getChatId();
+        return menuServiceCat.getMenuMessage(chatId, "Воспользуйтесь меню");
+    }
+
 
     /**
      * Метод отвечающий за отправку сообщений
@@ -379,6 +365,14 @@ public class ShelterBot extends TelegramLongPollingBot {
         sendMessage(chatId, text);
     }
 
+    private void menuCat(long chatId) {
+        menuServiceCat.getMenuMessage(chatId, "Воспользуйтесь меню");
+    }
+
+    private void menuDog(long chatId) {
+        menuServiceDog.getMenuMessage(chatId, " ");
+    }
+
     private void executeMessage(SendMessage message) {
         try {
             execute(message);
@@ -388,10 +382,10 @@ public class ShelterBot extends TelegramLongPollingBot {
     }
 
 
-    private void registerUsers(User telegramUser, long chatId){
-
-        usersService.findOrSaveUsers(telegramUser);
+    private void registerUsers(User telegramUser, long chatId) {
         if (usersService.findOrSaveUsers(telegramUser) != null) {
+            shelterCommand(chatId);
+        } else {
             shelterCommand(chatId);
         }
     }
