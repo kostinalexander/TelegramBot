@@ -90,8 +90,8 @@ public class ShelterBot extends TelegramLongPollingBot {
         commandList.add(new BotCommand("/start", "обновить"));
         commandList.add(new BotCommand("/shelter", "выбрать приют"));
         commandList.add(new BotCommand("/volunteer", "волонтёр"));
-        commandList.add(new BotCommand("/addresscat ", "адрес приюта для кошек"));
-        commandList.add(new BotCommand("/addressdog", "команда адрес приюта для собак"));
+        commandList.add(new BotCommand("/menu_cat ", "menu приюта для кошек"));
+        commandList.add(new BotCommand("/menu_dog", "menu приюта для собак"));
         commandList.add(new BotCommand("/savecar", "оформление пропуска"));
         commandList.add(new BotCommand("/safety", "техникой безопасности"));
         commandList.add(new BotCommand("/datauser", "оставить данные"));
@@ -147,11 +147,11 @@ public class ShelterBot extends TelegramLongPollingBot {
                 case "/volunteer":
                     volunteerCommand(chatId);
                     break;
-                case "/addresscat":
-                    addressCat(chatId);
+                case "/menu_cat":
+                    menuCat(chatId);
                     break;
-                case "/addressdog":
-                    addressDog(chatId);
+                case "/menu_dog":
+                    menuDog(chatId);
                     break;
                 case "/savecar":
                     saveCar(chatId);
@@ -179,11 +179,11 @@ public class ShelterBot extends TelegramLongPollingBot {
 
             if (callBackData.equals(CAT_BUTTON)) {
                 executeEditMessageText(CAT_SHELTER, chatId, messageId);
-                execute(processCallbackQuery(callbackQuery));
+                menuCat(chatId);
 
             } else if (callBackData.equals(DOG_BUTTON)) {
                 executeEditMessageText(DOG_SHELTER, chatId, messageId);
-                execute(processCallbackQuery(callbackQuery));
+                menuDog(chatId);
             }
 
         }
@@ -313,37 +313,6 @@ public class ShelterBot extends TelegramLongPollingBot {
         return true;
     }
 
-
-    private void buttonTap(Long id, long chatId, String queryId, String data, int msgId) throws TelegramApiException {
-
-        EditMessageText newTxt = EditMessageText.builder()
-                .chatId(id.toString())
-                .messageId(msgId).text("").build();
-
-        EditMessageReplyMarkup newKb = EditMessageReplyMarkup.builder()
-                .chatId(id.toString()).messageId(msgId).build();
-
-        if (data.equals(CAT_BUTTON)) {
-            newTxt.setText(CAT_SHELTER);
-            menuCat(chatId);
-
-        } else if (data.equals(DOG_BUTTON)) {
-            newTxt.setText(DOG_SHELTER);
-            menuDog(chatId);
-        }
-        AnswerCallbackQuery close = AnswerCallbackQuery.builder()
-                .callbackQueryId(queryId).build();
-
-        execute(close);
-        execute(newTxt);
-    }
-
-    private BotApiMethod<?> processCallbackQuery(CallbackQuery buttonQuery) {
-        long chatId = buttonQuery.getMessage().getChatId();
-        return menuServiceCat.getMenuMessage(chatId, "Воспользуйтесь меню");
-    }
-
-
     /**
      * Метод отвечающий за отправку сообщений
      *
@@ -365,12 +334,12 @@ public class ShelterBot extends TelegramLongPollingBot {
         sendMessage(chatId, text);
     }
 
-    private void menuCat(long chatId) {
-        menuServiceCat.getMenuMessage(chatId, "Воспользуйтесь меню");
+    private void menuCat(long chatId) throws TelegramApiException {
+        execute(menuServiceCat.getMenuMessage(chatId, "Воспользуйтесь меню"));
     }
 
-    private void menuDog(long chatId) {
-        menuServiceDog.getMenuMessage(chatId, " ");
+    private void menuDog(long chatId) throws TelegramApiException {
+        execute(menuServiceDog.getMenuMessage(chatId, "Воспользуйтесь меню "));
     }
 
     private void executeMessage(SendMessage message) {

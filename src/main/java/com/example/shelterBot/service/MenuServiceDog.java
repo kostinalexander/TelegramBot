@@ -34,6 +34,12 @@ public class MenuServiceDog {
         row2.add(new KeyboardButton("Как взять животное из приюта"));
         row3.add(new KeyboardButton("Прислать отчет о питомце"));
         row4.add(new KeyboardButton("позвать волонтера"));
+
+        keyboard.add(row1);
+        keyboard.add(row2);
+        keyboard.add(row3);
+        keyboard.add(row4);
+
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
     }

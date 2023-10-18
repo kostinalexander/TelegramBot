@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="добавил логику при сохранению юзера, если такой уже есть, то оправляем к выбору приюта">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/menu/Menu.java" beforeDir="false" />
+    <list default="true" id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="меню для приютов">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_40_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_40__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_41_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_41__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +70,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "feature-Andrey",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Александр/IdeaProjects/tgBotForAnimalShelter",
+    "last_opened_file_path": "F:/TelegramBot",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -70,7 +78,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
+    "settings.editor.selected.configurable": "preferences.general",
     "spring.configuration.checksum": "d8f7ee3051279bfa708e03c51aa474a2",
     "vue.rearranger.settings.migration": "true"
   },
@@ -179,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697118906541</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="меню для приютов">
+      <option name="closed" value="true" />
+      <created>1697382756831</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697382756831</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +230,8 @@
     <MESSAGE value="мержнул" />
     <MESSAGE value="добавил зависимости на swagger и немного кода" />
     <MESSAGE value="добавил логику при сохранению юзера, если такой уже есть, то оправляем к выбору приюта" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил логику при сохранению юзера, если такой уже есть, то оправляем к выбору приюта" />
+    <MESSAGE value="меню для приютов" />
+    <option name="LAST_COMMIT_MESSAGE" value="меню для приютов" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
