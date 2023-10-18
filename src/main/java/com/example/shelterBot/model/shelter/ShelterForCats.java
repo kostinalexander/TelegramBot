@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
+
 @Entity
 @Table(name = "shelter_for_cats")
 public class ShelterForCats extends Shelter {
@@ -20,12 +20,20 @@ public class ShelterForCats extends Shelter {
     @OneToMany(mappedBy = "shelterCats")
     private List<Cat> cats;
 
-    public ShelterForCats(String nameShelter, String address, LocalTime workingHours) {
+    public ShelterForCats(String nameShelter, String address, String workingHours) {
         super(nameShelter, address, workingHours);
     }
 
     public ShelterForCats() {
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public List<Cat> getCats() {
+        return cats;
     }
 
     public void setId(long id) {
@@ -53,7 +61,7 @@ public class ShelterForCats extends Shelter {
     public String toString() {
         return "ShelterForCats{" +
                 "id=" + id +
-                super.toString()+
+                super.toString() +
                 ", cats=" + cats +
                 '}';
     }

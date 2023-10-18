@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "dogs_shelter")
+@Table(name = "dog_shelter")
 public class DogShelter extends Shelter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class DogShelter extends Shelter {
     @OneToMany(mappedBy = "dogShelter")
     private List<Dog> dogs;
 
-    public DogShelter(String nameShelter, String address, LocalTime workingHours) {
+    public DogShelter(String nameShelter, String address, String workingHours) {
         super(nameShelter, address, workingHours);
     }
 

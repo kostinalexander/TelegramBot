@@ -6,9 +6,9 @@ import java.time.LocalTime;
     public abstract class Shelter {
         private String nameShelter;
         private String address;
-        private LocalTime workingHours;
+        private String workingHours;
 
-        public Shelter(String nameShelter, String address, LocalTime workingHours) {
+        public Shelter(String nameShelter, String address, String workingHours) {
             this.nameShelter = nameShelter;
             this.address = address;
             this.workingHours = workingHours;
@@ -33,11 +33,11 @@ import java.time.LocalTime;
             this.address = address;
         }
 
-        public LocalTime getWorkingHours() {
+        public String getWorkingHours() {
             return workingHours;
         }
 
-        public void setWorkingHours(LocalTime workingHours) {
+        public void setWorkingHours(String workingHours) {
             this.workingHours = workingHours;
         }
 

@@ -14,7 +14,7 @@ import java.util.Objects;
 @Table(name = "users")
 public class Users {
     @Id
-  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long telegramUserId;
     @CreationTimestamp
