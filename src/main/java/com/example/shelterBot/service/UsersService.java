@@ -23,7 +23,7 @@ public class UsersService {
         return (Collection<Users>) repository.findAll();
     }
 
-    public Users findOrSaveUsers(User telegramUser) {
+    public boolean ifUserExists(User telegramUser) {
         Users persistentUser = repository.findUsersByTelegramUserId(telegramUser.getId());
         if (persistentUser == null) {
             Users transientUser = new Users();
@@ -31,11 +31,10 @@ public class UsersService {
             transientUser.setFirstName(telegramUser.getFirstName());
             transientUser.setLastName(telegramUser.getLastName());
             transientUser.setFirstLoginDate(LocalDateTime.now());
-            return repository.save(transientUser);
-        } else {
-
-            return persistentUser;
+            repository.save(transientUser);
+            return false;
         }
+        return true;
     }
 
     public Users addUser(Users users) {

@@ -131,7 +131,7 @@ public class ShelterBot extends TelegramLongPollingBot {
                     break;
                 case Constants.ABOUT_SHELTER: {
                     if (isCat == null) {
-                        sendMessage(chatId, "Сначала выберите приют!");
+                        sendMessage(chatId,"сначала выберите приют!");
                     } else {
                         if (isCat) {
                             sendMessage(chatId, FAQ);
@@ -253,28 +253,9 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
     private void volunteerCommand(long chatId) {
         var text = "Повсем вопросам обращайтесь к https://t.me/Axekill93";
-        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
+        sendMessage(chatId, text);
     }
 
-    /**
-     * метод указывающий на адрес приюта для собак
-     *
-     * @param chatId
-     */
-    private void addressDog(long chatId) {
-        var text = "Приют находится по адресу г.Москва, ул.Брусилова 32Б";
-        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
-    }
-
-    /**
-     * метод указывающий на адрес приюта для кошек
-     *
-     * @param chatId
-     */
-    private void addressCat(long chatId) {
-        var text = "Приют находится по адресу г.Москва, ул.Искры 23А ";
-        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
-    }
 
     /**
      * Метод для демонстрации контактного адреса для связи
@@ -283,7 +264,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
     private void saveCar(long chatId) {
         var text = "Для оформления пропуска позвоните по номеру 89204579697, Александр";
-        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
+        sendMessage(chatId, text);
     }
 
     /**
@@ -297,7 +278,7 @@ public class ShelterBot extends TelegramLongPollingBot {
                 "Дразнить животных" +
                 "Воровать животных" +
                 "Проносить предметы угрожающие здоровью животных";
-        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
+        sendMessage(chatId, text);
     }
 
     /**
@@ -310,17 +291,21 @@ public class ShelterBot extends TelegramLongPollingBot {
         return true;
     }
 
+    private void sendMessage(long chatId, String textToSend) {
+        sendMessage(chatId, textToSend, null);
+    }
+
     /**
      * Метод отвечающий за отправку сообщений
      *
      * @param chatId
      * @param textToSend
-     * @param menuKeyboard
      */
-    private void sendMessage(long chatId, String textToSend, ReplyKeyboardMarkup menuKeyboard) {
+    private void sendMessage(long chatId, String textToSend, ReplyKeyboardMarkup keyboard) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
         message.setText(textToSend);
+        message.setReplyMarkup(keyboard);
         executeMessage(message);
     }
 
@@ -347,7 +332,6 @@ public class ShelterBot extends TelegramLongPollingBot {
             log.error(ERROR_TEXT + e.getMessage());
         }
     }
-
 
     private void registerUsers(Update update) {
         var textMessage = update.getMessage();
