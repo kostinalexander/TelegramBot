@@ -10,11 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -22,6 +19,7 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -69,17 +67,16 @@ public class ShelterBot extends TelegramLongPollingBot {
     private static final String VOLUNTEER = "/volunteer";
 
     static final String ERROR_TEXT = "Error occurred: ";
-
+    private Boolean isCat = null;
 
     /**
      * Конструктор, в котором содержится меню для бота с коммандами.
      *
      * @param config
-     * @param menuService
      * @param menuServiceCat
      * @param menuServiceDog
      */
-    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog) {
+    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog) {
         this.config = config;
         this.userRepository = userRepository;
         this.usersService = usersService;
@@ -161,13 +158,13 @@ public class ShelterBot extends TelegramLongPollingBot {
                     break;
                 case "/datauser":
                     if (dataUser(chatId)) {
-                        sendMessage(chatId, "Укажите, пожалуйста, телефон для связи");
+                        sendMessage(chatId, "Укажите, пожалуйста, телефон для связи", menuServiceCat.getMenuKeyboard());
                     }
-                    sendMessage(1298936886, update.getMessage().getText());
+                    sendMessage(1298936886, update.getMessage().getText(), menuServiceCat.getMenuKeyboard());
                     break;
 
                 default:
-                    sendMessage(chatId, "Извините, мы не можем ответить на этот вопрос.");
+                    sendMessage(chatId, "Извините, мы не можем ответить на этот вопрос.", menuServiceCat.getMenuKeyboard());
 
             }
         } else if (update.hasCallbackQuery()) {
@@ -178,17 +175,17 @@ public class ShelterBot extends TelegramLongPollingBot {
             String queryId = update.getCallbackQuery().getId();
 
             if (callBackData.equals(CAT_BUTTON)) {
-                executeEditMessageText(CAT_SHELTER, chatId, messageId);
-                menuCat(chatId);
+                isCat = true;
 
+                sendMessage(chatId, CAT_SHELTER, menuServiceCat.getMenuKeyboard());
             } else if (callBackData.equals(DOG_BUTTON)) {
-                executeEditMessageText(DOG_SHELTER, chatId, messageId);
-                menuDog(chatId);
+                isCat = false;
+                sendMessage(chatId, DOG_SHELTER, menuServiceDog.getMenuKeyboard());
+            }
             }
 
         }
 
-    }
 
 
     /**
@@ -204,12 +201,12 @@ public class ShelterBot extends TelegramLongPollingBot {
         String fullName = userName + " " + firstName + " " + lastName;
         if (userName == null & lastName == null) {
             var formattedText = String.format(textChat, firstName);
-            sendMessage(chatId, formattedText);
+            sendMessage(chatId, formattedText, menuServiceCat.getMenuKeyboard());
         } else if (fullName == null) {
-            sendMessage(chatId, textChat);
+            sendMessage(chatId, textChat, menuServiceCat.getMenuKeyboard());
         } else {
             var formattedText = String.format(textChat, userName);
-            sendMessage(chatId, formattedText);
+            sendMessage(chatId, formattedText, menuServiceCat.getMenuKeyboard());
             log.info("Replied to user " + fullName);
         }
     }
@@ -256,7 +253,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
     private void volunteerCommand(long chatId) {
         var text = "Повсем вопросам обращайтесь к https://t.me/Axekill93";
-        sendMessage(chatId, text);
+        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
     }
 
     /**
@@ -266,7 +263,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
     private void addressDog(long chatId) {
         var text = "Приют находится по адресу г.Москва, ул.Брусилова 32Б";
-        sendMessage(chatId, text);
+        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
     }
 
     /**
@@ -276,7 +273,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
     private void addressCat(long chatId) {
         var text = "Приют находится по адресу г.Москва, ул.Искры 23А ";
-        sendMessage(chatId, text);
+        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
     }
 
     /**
@@ -286,7 +283,7 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
     private void saveCar(long chatId) {
         var text = "Для оформления пропуска позвоните по номеру 89204579697, Александр";
-        sendMessage(chatId, text);
+        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
     }
 
     /**
@@ -300,7 +297,7 @@ public class ShelterBot extends TelegramLongPollingBot {
                 "Дразнить животных" +
                 "Воровать животных" +
                 "Проносить предметы угрожающие здоровью животных";
-        sendMessage(chatId, text);
+        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
     }
 
     /**
@@ -318,8 +315,9 @@ public class ShelterBot extends TelegramLongPollingBot {
      *
      * @param chatId
      * @param textToSend
+     * @param menuKeyboard
      */
-    private void sendMessage(long chatId, String textToSend) {
+    private void sendMessage(long chatId, String textToSend, ReplyKeyboardMarkup menuKeyboard) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
         message.setText(textToSend);
@@ -331,7 +329,7 @@ public class ShelterBot extends TelegramLongPollingBot {
         editMessage.setChatId(String.valueOf(chatId));
         editMessage.setText(text);
         editMessage.setMessageId((int) messageId);
-        sendMessage(chatId, text);
+        sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
     }
 
     private void menuCat(long chatId) throws TelegramApiException {
@@ -349,6 +347,7 @@ public class ShelterBot extends TelegramLongPollingBot {
             log.error(ERROR_TEXT + e.getMessage());
         }
     }
+
 
 
     private void registerUsers(User telegramUser, long chatId) {

@@ -19,7 +19,7 @@ public class MenuServiceDog {
         final ReplyKeyboardMarkup replyKeyboardMarkup =getMenuKeyboard();
         return createMessageWithKeyboard(chatId, textToSend, replyKeyboardMarkup);
     }
-    private ReplyKeyboardMarkup getMenuKeyboard() {
+    public ReplyKeyboardMarkup getMenuKeyboard() {
         final ReplyKeyboardMarkup replyKeyboardMarkup =new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setSelective(true);
         replyKeyboardMarkup.setResizeKeyboard(true);
