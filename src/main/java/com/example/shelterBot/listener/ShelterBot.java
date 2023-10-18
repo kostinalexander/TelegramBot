@@ -127,15 +127,20 @@ public class ShelterBot extends TelegramLongPollingBot {
 
             switch (messageText) {
                 case "/start":
-                    String userName = update.getMessage().getChat().getUserName();
-                    String firstName = update.getMessage().getChat().getFirstName();
-                    String lastName = update.getMessage().getChat().getLastName();
-                    startCommand(chatId, userName, firstName, lastName);
-
-                    var textMessage = update.getMessage();
-                    var telegramUser = textMessage.getFrom();
-                    registerUsers(telegramUser, chatId);
+                    registerUsers(update);
                     break;
+                case Constants.ABOUT_SHELTER: {
+                    if (isCat == null) {
+                        sendMessage(chatId, "Сначала выберите приют!");
+                    } else {
+                        if (isCat) {
+                            sendMessage(chatId, FAQ);
+                        } else {
+                            sendMessage(chatId, FAQD);
+                        }
+                    }
+                }
+                break;
                 case "/shelter":
                     shelterCommand(chatId);
                     menuCat(chatId);
@@ -169,23 +174,18 @@ public class ShelterBot extends TelegramLongPollingBot {
             }
         } else if (update.hasCallbackQuery()) {
             String callBackData = update.getCallbackQuery().getData();
-            CallbackQuery callbackQuery = update.getCallbackQuery();
-            long messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
-            String queryId = update.getCallbackQuery().getId();
 
             if (callBackData.equals(CAT_BUTTON)) {
                 isCat = true;
-
                 sendMessage(chatId, CAT_SHELTER, menuServiceCat.getMenuKeyboard());
             } else if (callBackData.equals(DOG_BUTTON)) {
                 isCat = false;
                 sendMessage(chatId, DOG_SHELTER, menuServiceDog.getMenuKeyboard());
             }
-            }
-
         }
 
+    }
 
 
     /**
@@ -324,13 +324,13 @@ public class ShelterBot extends TelegramLongPollingBot {
         executeMessage(message);
     }
 
-    private void executeEditMessageText(String text, long chatId, long messageId) {
+  /*  private void executeEditMessageText(String text, long chatId, long messageId) {
         EditMessageText editMessage = new EditMessageText();
         editMessage.setChatId(String.valueOf(chatId));
         editMessage.setText(text);
         editMessage.setMessageId((int) messageId);
         sendMessage(chatId, text, menuServiceCat.getMenuKeyboard());
-    }
+    }*/
 
     private void menuCat(long chatId) throws TelegramApiException {
         execute(menuServiceCat.getMenuMessage(chatId, "Воспользуйтесь меню"));
@@ -349,12 +349,16 @@ public class ShelterBot extends TelegramLongPollingBot {
     }
 
 
-
-    private void registerUsers(User telegramUser, long chatId) {
-        if (usersService.findOrSaveUsers(telegramUser) != null) {
-            shelterCommand(chatId);
-        } else {
-            shelterCommand(chatId);
+    private void registerUsers(Update update) {
+        var textMessage = update.getMessage();
+        var telegramUser = textMessage.getFrom();
+        var chatId = update.getMessage().getChatId();
+        if (!usersService.ifUserExists(telegramUser)) {
+            String userName = update.getMessage().getChat().getUserName();
+            String firstName = update.getMessage().getChat().getFirstName();
+            String lastName = update.getMessage().getChat().getLastName();
+            startCommand(chatId, userName, firstName, lastName);
         }
+        shelterCommand(chatId);
     }
 }
