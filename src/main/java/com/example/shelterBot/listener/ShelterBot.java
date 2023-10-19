@@ -26,6 +26,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.shelterBot.listener.Constants.DOG_BUTTON;
+
 @Service
 @Slf4j
 public class ShelterBot extends TelegramLongPollingBot {
@@ -38,35 +40,6 @@ public class ShelterBot extends TelegramLongPollingBot {
     private final MenuServiceCat menuServiceCat;
     private final MenuServiceDog menuServiceDog;
 
-
-    static final String CAT_BUTTON = "CAT_BUTTON";
-    static final String DOG_BUTTON = "DOG_BUTTON";
-    static final String DOG_SHELTER = "Отлично, вы выбрали приют для собак";
-    static final String CAT_SHELTER = "Отлично, вы выбрали приют для кошек";
-    static final String FAQ = """
-            приют находится по адресу-г.Москва, ул.Искры 23А.
-                        
-            время работы приюта 9:00-18:00 без выходных.
-                        
-            """;
-    static final String FAQD = """
-            приют находится по адресу-г.Москва, ул.Брусилова 32Б.
-                        
-            время работы приюта 9:00-18:00 без выходных.
-                        
-            """;
-    static final String SAFETY = """
-            На территории приюта запрещено:
-                            Распивать алкогольные напитки
-                            Дразнить животных
-                            Воровать животных
-                            Проносить предметы угрожающие здоровью животных
-            """;
-    private static final String START = "/start";
-    private static final String SHELTERS = "/shelters";
-    private static final String VOLUNTEER = "/volunteer";
-
-    static final String ERROR_TEXT = "Error occurred: ";
     private Boolean isCat = null;
 
     /**
@@ -134,13 +107,32 @@ public class ShelterBot extends TelegramLongPollingBot {
                         sendMessage(chatId,"сначала выберите приют!");
                     } else {
                         if (isCat) {
-                            sendMessage(chatId, FAQ);
+                            sendMessage(chatId, Constants.FAQ);
                         } else {
-                            sendMessage(chatId, FAQD);
+                            sendMessage(chatId, Constants.FAQD);
                         }
                     }
                 }
                 break;
+                case Constants.TAKE: {
+                    if(isCat==null){
+                        sendMessage(chatId,"Сначала выберите приют");
+                    } else if (isCat) {
+                        sendMessage(chatId,Constants.TAKE_CAT);
+                    }else{
+                        sendMessage(chatId,Constants.TAKE_DOG);
+                    }
+                }
+                break;
+
+                case Constants.REPORT_HOW:
+                    sendMessage(chatId,Constants.REPORT);
+                    break;
+
+                case Constants.VOLUNTEER_HELP:
+                    volunteerCommand(chatId);
+                    break;
+
                 case "/shelter":
                     shelterCommand(chatId);
                     menuCat(chatId);
@@ -176,12 +168,12 @@ public class ShelterBot extends TelegramLongPollingBot {
             String callBackData = update.getCallbackQuery().getData();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
 
-            if (callBackData.equals(CAT_BUTTON)) {
+            if (callBackData.equals(Constants.CAT_BUTTON)) {
                 isCat = true;
-                sendMessage(chatId, CAT_SHELTER, menuServiceCat.getMenuKeyboard());
+                sendMessage(chatId, Constants.CAT_SHELTER, menuServiceCat.getMenuKeyboard());
             } else if (callBackData.equals(DOG_BUTTON)) {
                 isCat = false;
-                sendMessage(chatId, DOG_SHELTER, menuServiceDog.getMenuKeyboard());
+                sendMessage(chatId, Constants.DOG_SHELTER, menuServiceDog.getMenuKeyboard());
             }
         }
 
@@ -227,11 +219,11 @@ public class ShelterBot extends TelegramLongPollingBot {
         List<InlineKeyboardButton> rowInline = new ArrayList<>();
         var button1 = new InlineKeyboardButton();
         button1.setText("Приют для кошек");
-        button1.setCallbackData(CAT_BUTTON);
+        button1.setCallbackData(Constants.CAT_BUTTON);
 
         var button2 = new InlineKeyboardButton();
         button2.setText("Приют для собак");
-        button2.setCallbackData(DOG_BUTTON);
+        button2.setCallbackData(Constants.DOG_BUTTON);
 
         rowInline.add(button1);
         rowInline.add(button2);
@@ -329,7 +321,7 @@ public class ShelterBot extends TelegramLongPollingBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-            log.error(ERROR_TEXT + e.getMessage());
+            log.error(Constants.ERROR_TEXT + e.getMessage());
         }
     }
 
