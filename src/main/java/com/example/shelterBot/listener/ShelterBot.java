@@ -62,8 +62,6 @@ public class ShelterBot extends TelegramLongPollingBot {
         commandList.add(new BotCommand("/volunteer", "волонтёр"));
         commandList.add(new BotCommand("/menu_cat ", "menu приюта для кошек"));
         commandList.add(new BotCommand("/menu_dog", "menu приюта для собак"));
-        commandList.add(new BotCommand("/savecar", "оформление пропуска"));
-        commandList.add(new BotCommand("/safety", "техникой безопасности"));
         commandList.add(new BotCommand("/datauser", "оставить данные"));
 
 
@@ -147,12 +145,7 @@ public class ShelterBot extends TelegramLongPollingBot {
                 case "/menu_dog":
                     menuDog(chatId);
                     break;
-                case "/savecar":
-                    saveCar(chatId);
-                    break;
-                case "/safety":
-                    safety(chatId);
-                    break;
+
                 case "/datauser":
                     if (dataUser(chatId)) {
                         sendMessage(chatId, "Укажите, пожалуйста, телефон для связи", menuServiceCat.getMenuKeyboard());
@@ -249,29 +242,6 @@ public class ShelterBot extends TelegramLongPollingBot {
     }
 
 
-    /**
-     * Метод для демонстрации контактного адреса для связи
-     *
-     * @param chatId
-     */
-    private void saveCar(long chatId) {
-        var text = "Для оформления пропуска позвоните по номеру 89204579697, Александр";
-        sendMessage(chatId, text);
-    }
-
-    /**
-     * Метод с техникой безопасности
-     *
-     * @param chatId
-     */
-    private void safety(long chatId) {
-        var text = "На территории приюта запрещено: " +
-                "Распивать алкогольные напитки" +
-                "Дразнить животных" +
-                "Воровать животных" +
-                "Проносить предметы угрожающие здоровью животных";
-        sendMessage(chatId, text);
-    }
 
     /**
      * Метод для записи контактов пользователя
