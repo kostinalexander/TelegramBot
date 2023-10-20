@@ -4,40 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="мержнул">
+    <list default="true" id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Report.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/ShelterBotApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/ShelterBotApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/config/BotInitializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/CatController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/CatController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/CatShController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/CatShController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/DogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/DogController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/DogShController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/DogShController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/VolunteerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/VolunteerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Volunteer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Volunteer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Animal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Cat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Dog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/DogShelter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/DogShelter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/Shelter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/Shelter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/ShelterForCats.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/ShelterForCats.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/CatRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/CatRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/CatShRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/CatShRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/DogRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/DogRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/DogShRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/DogShRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/UsersRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/VolunteerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/VolunteerRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatShService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/UsersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/VolunteerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/VolunteerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/as.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/as.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,230 +46,45 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="2WM1C2NCWUokncjYUjC0tVTIlRr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2X2JodI0XTUOdIGyGkDsVlwF1il" />
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Notification.DisplayName-DoNotAsk-Vcs Important Messages&quot;: &quot;VCS important messages&quot;,
-    &quot;Notification.DoNotAsk-Vcs Important Messages&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Александр/IdeaProjects/primer animal shelter&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d8f7ee3051279bfa708e03c51aa474a2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
-    ]
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feature-Andrey",
+    "last_opened_file_path": "F:/primer animal shelter"
   }
-}</component>
-  <component name="RunManager" selected="Spring Boot.ShelterBotApplication">
-    <configuration name="CatServiceTests.addCatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shelterBot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
-      <option name="METHOD_NAME" value="addCatTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CatServiceTests.editCatTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shelterBot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
-      <option name="METHOD_NAME" value="editCatTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CatServiceTests.getCatWithId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shelterBot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
-      <option name="METHOD_NAME" value="getCatWithId" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CatServiceTests.shouldReturnTrueWhenDeleteAnimalByIdCalled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shelterBot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.shelterBot.tests.serviceTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.serviceTests" />
-      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.serviceTests.CatServiceTests" />
-      <option name="METHOD_NAME" value="shouldReturnTrueWhenDeleteAnimalByIdCalled" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SendMessageTest.sendMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="shelterBot" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.shelterBot.tests.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.shelterBot.tests.util" />
-      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.tests.util.SendMessageTest" />
-      <option name="METHOD_NAME" value="sendMessageTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ShelterBotApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="shelterBot" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.shelterBot.ShelterBotApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.SendMessageTest.sendMessageTest" />
-        <item itemvalue="JUnit.CatServiceTests.shouldReturnTrueWhenDeleteAnimalByIdCalled" />
-        <item itemvalue="JUnit.CatServiceTests.editCatTest" />
-        <item itemvalue="JUnit.CatServiceTests.addCatTest" />
-        <item itemvalue="JUnit.CatServiceTests.getCatWithId" />
-      </list>
-    </recent_temporary>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="19d7eeb0-5f7b-41a1-aaeb-2d152b2d0e3c" name="Changes" comment="" />
-      <created>1696527504612</created>
+      <changelist id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="" />
+      <created>1697821420179</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1696527504612</updated>
-      <workItem from="1696527505631" duration="11119000" />
-      <workItem from="1696674501148" duration="3667000" />
-      <workItem from="1696771500704" duration="5040000" />
-      <workItem from="1696869360090" duration="428000" />
-      <workItem from="1697353980106" duration="5486000" />
-      <workItem from="1697565599421" duration="2076000" />
-      <workItem from="1697648543495" duration="543000" />
-      <workItem from="1697732195328" duration="2679000" />
+      <updated>1697821420179</updated>
     </task>
-    <task id="LOCAL-00001" summary="новый бот.">
-      <option name="closed" value="true" />
-      <created>1696678578012</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1696678578012</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Задания от Алексея.">
-      <option name="closed" value="true" />
-      <created>1696868940787</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1696868940788</updated>
-    </task>
-    <task id="LOCAL-00003" summary="мержнул">
-      <option name="closed" value="true" />
-      <created>1696951397214</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1696951397214</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/feature-Alexander2" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="новый бот." />
-    <MESSAGE value="Задания от Алексея." />
-    <MESSAGE value="мержнул" />
-    <option name="LAST_COMMIT_MESSAGE" value="мержнул" />
-    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
