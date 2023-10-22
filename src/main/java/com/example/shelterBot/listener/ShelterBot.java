@@ -4,18 +4,17 @@ import com.example.shelterBot.config.BotConfig;
 import com.example.shelterBot.repository.UsersRepository;
 import com.example.shelterBot.service.MenuServiceCat;
 import com.example.shelterBot.service.MenuServiceDog;
+import com.example.shelterBot.service.ReportService;
 import com.example.shelterBot.service.UsersService;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -40,6 +39,10 @@ public class ShelterBot extends TelegramLongPollingBot {
     private final MenuServiceCat menuServiceCat;
     private final MenuServiceDog menuServiceDog;
 
+    private final ReportService reportService;
+
+    private boolean ReportCheck = false;
+
     private Boolean isCat = null;
 
     /**
@@ -48,13 +51,15 @@ public class ShelterBot extends TelegramLongPollingBot {
      * @param config
      * @param menuServiceCat
      * @param menuServiceDog
+     * @param reportService
      */
-    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog) {
+    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog, ReportService reportService) {
         this.config = config;
         this.userRepository = userRepository;
         this.usersService = usersService;
         this.menuServiceCat = menuServiceCat;
         this.menuServiceDog = menuServiceDog;
+        this.reportService = reportService;
 
         List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "обновить"));
@@ -123,9 +128,14 @@ public class ShelterBot extends TelegramLongPollingBot {
                 }
                 break;
 
-                case Constants.REPORT_HOW:
-                    sendMessage(chatId,Constants.REPORT);
-                    break;
+                case Constants.REPORT_HOW:{
+                    ReportCheck = true;
+                    if (ReportCheck){
+                        sendMessage(chatId,Constants.REPORT);
+                        sendMessage(chatId,messageText);// По идее тут бот должен отправлять репорт мне в личные сообщения
+                        // но он отправляет текст Constants.REPORT, не понимаю почему.
+                    }
+                    break;}
 
                 case Constants.VOLUNTEER_HELP:
                     volunteerCommand(chatId);
@@ -167,6 +177,17 @@ public class ShelterBot extends TelegramLongPollingBot {
             } else if (callBackData.equals(DOG_BUTTON)) {
                 isCat = false;
                 sendMessage(chatId, Constants.DOG_SHELTER, menuServiceDog.getMenuKeyboard());
+            } else if (callBackData.contains(":")){
+              String[] arguments =  callBackData.split(":");
+              var reportId = Long.parseLong(arguments[0]);
+              if(arguments[1].contains(Constants.ACCEPTED)){
+                  sendMessage(chatId,Constants.ACCEPTED);
+                  reportService.martReport(reportId,true);
+              }else if (arguments[1].contains(Constants.NOT_ACCEPTED)){
+                  sendMessage(chatId,Constants.NOT_ACCEPTED);
+                  reportService.martReport(reportId,false);
+              }
+
             }
         }
 
@@ -307,4 +328,5 @@ public class ShelterBot extends TelegramLongPollingBot {
         }
         shelterCommand(chatId);
     }
+
 }

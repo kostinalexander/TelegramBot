@@ -1,5 +1,6 @@
 package com.example.shelterBot.model;
 
+import com.example.shelterBot.model.animals.Dog;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -15,17 +16,23 @@ public class Report {
     private String photo;
     private String text;
     private LocalDate localDate;
+    private Boolean reportChecked;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
-    private Users users;
+    @JoinColumn(name = "dog_id")
+    private Dog dog;
 
 
-    public Report(String photo, String text, LocalDate localDate, Users users) {
+    public Report(String photo, String text, LocalDate localDate, Dog dog,Boolean reportChecked) {
         this.photo = photo;
         this.text = text;
         this.localDate = localDate;
-        this.users = users;
+        this.dog = dog;
+        this.reportChecked= null;
+    }
+
+    public Report() {
+
     }
 
     public void setId(Long id) {
@@ -44,10 +51,37 @@ public class Report {
         this.localDate = localDate;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public Boolean getReportChecked() {
+        return reportChecked;
     }
 
+    public void setReportChecked(Boolean reportChecked) {
+        this.reportChecked = reportChecked;
+    }
+
+    public void setDog(Dog dog) {
+        this.dog = dog;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public Dog getDog() {
+        return dog;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -69,7 +103,7 @@ public class Report {
                 ", photo='" + photo + '\'' +
                 ", text='" + text + '\'' +
                 ", localDate=" + localDate +
-                ", users=" + users +
+                ", dog=" + dog +
                 '}';
     }
 }

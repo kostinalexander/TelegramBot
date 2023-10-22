@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
-    Optional<Report> findByLocalDateEquals(LocalDate date);
+    List<Report> findAllByReportCheckedIsNull();
 
-    List<Report> findByUserId(Long id);
+
 
 
 }

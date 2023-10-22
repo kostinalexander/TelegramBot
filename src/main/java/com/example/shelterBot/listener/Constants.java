@@ -3,6 +3,11 @@ package com.example.shelterBot.listener;
 public interface Constants {
 
     String ABOUT_SHELTER = "О приюте";
+
+    String ACCEPTED = "Принято";
+    String NOT_ACCEPTED = "Не принято";
+
+
      String CAT_BUTTON = "CAT_BUTTON";
      String DOG_BUTTON = "DOG_BUTTON";
      String DOG_SHELTER = "Отлично, вы выбрали приют для собак";

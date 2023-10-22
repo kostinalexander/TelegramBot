@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Report.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/as.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/as.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/DogShService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/DogShService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/MenuServiceDog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/MenuServiceDog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="feature-Alexander2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,11 +50,11 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2X2JodI0XTUOdIGyGkDsVlwF1il" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -59,12 +63,40 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "feature-Andrey",
-    "last_opened_file_path": "F:/primer animal shelter"
+    "last_opened_file_path": "F:/primer animal shelter",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="ShelterBotApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="shelterBot" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.shelterBot.ShelterBotApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.shelterBot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ShelterBotApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

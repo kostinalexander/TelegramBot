@@ -1,5 +1,6 @@
 package com.example.shelterBot.service;
 
+import com.example.shelterBot.listener.ShelterBot;
 import com.example.shelterBot.model.shelter.DogShelter;
 import com.example.shelterBot.repository.DogShRepository;
 import org.springframework.stereotype.Service;
