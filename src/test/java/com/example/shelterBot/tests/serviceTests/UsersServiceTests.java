@@ -1,10 +1,7 @@
 package com.example.shelterBot.tests.serviceTests;
 
-import com.example.shelterBot.model.Users;
-import com.example.shelterBot.model.animals.Cat;
-import com.example.shelterBot.repository.CatRepository;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.repository.UsersRepository;
-import com.example.shelterBot.service.CatService;
 import com.example.shelterBot.service.UsersService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

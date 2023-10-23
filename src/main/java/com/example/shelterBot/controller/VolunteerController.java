@@ -1,6 +1,6 @@
 package com.example.shelterBot.controller;
 
-import com.example.shelterBot.model.Volunteer;
+import com.example.shelterBot.model.people.Volunteer;
 import com.example.shelterBot.service.VolunteerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

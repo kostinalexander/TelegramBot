@@ -1,4 +1,4 @@
-package com.example.shelterBot.model;
+package com.example.shelterBot.model.people;
 
 import com.example.shelterBot.model.animals.Cat;
 import com.example.shelterBot.model.animals.Dog;

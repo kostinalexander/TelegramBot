@@ -1,6 +1,6 @@
 package com.example.shelterBot.model.animals;
 
-import com.example.shelterBot.model.Users;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.model.shelter.DogShelter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
