@@ -20,7 +20,7 @@ create table dog_shelter
     id           serial primary key,
     nameShelter  text,
     address      text,
-    workingHours time
+    workingHours text
 );
 
 create table shelter_for_cats
@@ -28,13 +28,13 @@ create table shelter_for_cats
     id           serial primary key,
     nameShelter  text,
     address      text,
-    workingHours time
+    workingHours text
 );
 
 create table cats
 (
     id              serial primary key,
-    name_cat        TEXT,
+    name        TEXT,
     age             smallint,
     breed           text,
     shelter_cats_id serial,
@@ -46,7 +46,7 @@ create table cats
 create table dogs
 (
     id             serial primary key,
-    name_dog       TEXT,
+    name       TEXT,
     age            smallint,
     breed          text,
     shelter_dog_id serial,
@@ -62,6 +62,26 @@ create table volunteer
     lastName   text,
     email      text
 );
+
+--changeset andrey:3
+create table report_cat(
+id serial primary key,
+photo text,
+local_date date,
+report_text text,
+cat_id serial,
+foreign  key (cat_id) references cat(id)
+);
+
+create table report_dog(
+id serial primary key,
+photo text,
+local_date date,
+report_text text,
+dog_id serial,
+foreign  key (dog_id) references dog(id)
+);
+
 
 
 
