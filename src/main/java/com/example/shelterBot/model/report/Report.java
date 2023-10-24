@@ -4,15 +4,13 @@ import java.time.LocalDate;
 
 public class Report {
     private String photo;
-    private String text;
+    private String reportText;
     private LocalDate localDate;
-    private Boolean reportChecked;
 
-    public Report(String photo, String text, LocalDate localDate, Boolean reportChecked) {
+    public Report(String photo, String reportText, LocalDate localDate ) {
         this.photo = photo;
-        this.text = text;
+        this.reportText = reportText;
         this.localDate = localDate;
-        this.reportChecked = reportChecked;
     }
 
     public Report() {
@@ -27,11 +25,11 @@ public class Report {
     }
 
     public String getText() {
-        return text;
+        return reportText;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.reportText = text;
     }
 
     public LocalDate getLocalDate() {
@@ -42,21 +40,14 @@ public class Report {
         this.localDate = localDate;
     }
 
-    public Boolean getReportChecked() {
-        return reportChecked;
-    }
 
-    public void setReportChecked(Boolean reportChecked) {
-        this.reportChecked = reportChecked;
-    }
 
     @Override
     public String toString() {
         return "Report{" +
                 "photo='" + photo + '\'' +
-                ", text='" + text + '\'' +
+                ", text='" + reportText + '\'' +
                 ", localDate=" + localDate +
-                ", reportChecked=" + reportChecked +
                 '}';
     }
 }

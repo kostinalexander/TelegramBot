@@ -70,7 +70,7 @@ photo text,
 local_date date,
 report_text text,
 cat_id serial,
-foreign  key (cat_id) references cat(id)
+foreign  key (cat_id) references cats(id)
 );
 
 create table report_dog(
@@ -79,7 +79,7 @@ photo text,
 local_date date,
 report_text text,
 dog_id serial,
-foreign  key (dog_id) references dog(id)
+foreign  key (dog_id) references dogs(id)
 );
 
 

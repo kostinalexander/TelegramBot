@@ -19,7 +19,7 @@ public class Dog extends Animal {
     private DogShelter dogShelter;
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner", nullable = true)
     private Users users;
 
     public Dog(String name, int age, String breed) {

@@ -4,17 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="репорт">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/ReportDog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportCatRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportDogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportCatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" afterDir="false" />
+    <list default="true" id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="добавил таблицы репорт">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/InlineService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportDogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/ReportCat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/animals/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/animals/Cat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/animals/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/animals/Dog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/ReportCat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/ReportCat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/ReportDog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/ReportDog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/CatRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/CatRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportCatRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportCatRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportDogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/repository/ReportDogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportCatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportCatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/UsersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/VolunteerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/controller/VolunteerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Users.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/Volunteer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Cat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Cat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Dog.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Dog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/UsersRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/UsersRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/VolunteerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/repository/VolunteerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/UsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/UsersService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/VolunteerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/VolunteerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/liquibase/changelog-master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/liquibase/changelog-master.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/liquibase/scripts/as.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/liquibase/scripts/as.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +45,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -58,14 +79,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature-Andrey",
-    "last_opened_file_path": "F:/TelegramBot"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature-Andrey&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/TelegramBot&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="ShelterBotApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.shelterBot.ShelterBotApplication" />
+      <module name="shelterBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.shelterBot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ShelterBotApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -83,7 +124,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697825608737</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix report">
+      <option name="closed" value="true" />
+      <created>1698091029840</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698091029840</updated>
+    </task>
+    <task id="LOCAL-00003" summary="добавил таблицы репорт">
+      <option name="closed" value="true" />
+      <created>1698092327850</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698092327850</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,6 +156,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="репорт" />
-    <option name="LAST_COMMIT_MESSAGE" value="репорт" />
+    <MESSAGE value="fix report" />
+    <MESSAGE value="добавил таблицы репорт" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил таблицы репорт" />
   </component>
 </project>

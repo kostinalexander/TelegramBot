@@ -15,16 +15,25 @@ public class ReportCat extends Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean reportChecked;
+
     @OneToOne
     @JoinColumn(name = "cat_id")
     private Cat cat;
 
 
-    public ReportCat(String photo, String text, LocalDate localDate, Boolean reportChecked) {
-        super(photo, text, localDate, reportChecked);
+
+
+    public ReportCat(String photo, String text, LocalDate localDate,Boolean reportChecked) {
+        super(photo, text, localDate);
+        this.reportChecked=false;
     }
 
     public ReportCat() {
+    }
+
+    public void setReportChecked(Boolean reportChecked) {
+        this.reportChecked = reportChecked;
     }
 
     public void setCat(Cat cat) {

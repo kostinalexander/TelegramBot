@@ -15,15 +15,22 @@ public class ReportDog extends Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean reportChecked;
+
     @OneToOne
     @JoinColumn(name = "dog_id")
     private Dog dog;
 
     public ReportDog(String photo, String text, LocalDate localDate, Boolean reportChecked) {
-        super(photo, text, localDate, reportChecked);
+        super(photo, text, localDate);
+        this.reportChecked = null;
     }
 
     public ReportDog() {
+    }
+
+    public void setReportChecked(Boolean reportChecked) {
+        this.reportChecked = reportChecked;
     }
 
     public void setDog(Dog dog) {

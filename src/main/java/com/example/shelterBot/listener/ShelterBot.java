@@ -2,9 +2,7 @@ package com.example.shelterBot.listener;
 
 import com.example.shelterBot.config.BotConfig;
 import com.example.shelterBot.repository.UsersRepository;
-import com.example.shelterBot.service.MenuServiceCat;
-import com.example.shelterBot.service.MenuServiceDog;
-import com.example.shelterBot.service.UsersService;
+import com.example.shelterBot.service.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -39,8 +34,11 @@ public class ShelterBot extends TelegramLongPollingBot {
     private final UsersService usersService;
     private final MenuServiceCat menuServiceCat;
     private final MenuServiceDog menuServiceDog;
+   // private final ReportCatService reportCatService;
+  //  private final ReportDogService reportDogService;
 
     private Boolean isCat = null;
+    private boolean isNextMessageReport = false;
 
     /**
      * Конструктор, в котором содержится меню для бота с коммандами.
@@ -48,13 +46,17 @@ public class ShelterBot extends TelegramLongPollingBot {
      * @param config
      * @param menuServiceCat
      * @param menuServiceDog
+     * @param reportCatService
+     * @param reportDogService
      */
-    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog) {
+    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog, ReportCatService reportCatService, ReportDogService reportDogService) {
         this.config = config;
         this.userRepository = userRepository;
         this.usersService = usersService;
         this.menuServiceCat = menuServiceCat;
         this.menuServiceDog = menuServiceDog;
+       // this.reportCatService = reportCatService;
+      //  this.reportDogService = reportDogService;
 
         List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "обновить"));
@@ -96,13 +98,14 @@ public class ShelterBot extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
+
             switch (messageText) {
                 case "/start":
                     registerUsers(update);
                     break;
                 case Constants.ABOUT_SHELTER: {
                     if (isCat == null) {
-                        sendMessage(chatId,"сначала выберите приют!");
+                        sendMessage(chatId, "сначала выберите приют!");
                     } else {
                         if (isCat) {
                             sendMessage(chatId, Constants.FAQ);
@@ -113,18 +116,18 @@ public class ShelterBot extends TelegramLongPollingBot {
                 }
                 break;
                 case Constants.TAKE: {
-                    if(isCat==null){
-                        sendMessage(chatId,"Сначала выберите приют");
+                    if (isCat == null) {
+                        sendMessage(chatId, "Сначала выберите приют");
                     } else if (isCat) {
-                        sendMessage(chatId,Constants.TAKE_CAT);
-                    }else{
-                        sendMessage(chatId,Constants.TAKE_DOG);
+                        sendMessage(chatId, Constants.TAKE_CAT);
+                    } else {
+                        sendMessage(chatId, Constants.TAKE_DOG);
                     }
                 }
                 break;
 
-                case Constants.REPORT_HOW:
-                    sendMessage(chatId,Constants.REPORT);
+                case Constants.REPORT_NOW:
+                    sendMessage(chatId, Constants.REPORT);
                     break;
 
                 case Constants.VOLUNTEER_HELP:
@@ -148,13 +151,13 @@ public class ShelterBot extends TelegramLongPollingBot {
 
                 case "/datauser":
                     if (dataUser(chatId)) {
-                        sendMessage(chatId, "Укажите, пожалуйста, телефон для связи", menuServiceCat.getMenuKeyboard());
+                        sendMessage(chatId, "Укажите, пожалуйста, телефон для связи");
                     }
-                    sendMessage(1298936886, update.getMessage().getText(), menuServiceCat.getMenuKeyboard());
+                    sendMessage(1298936886, update.getMessage().getText());
                     break;
 
                 default:
-                    sendMessage(chatId, "Извините, мы не можем ответить на этот вопрос.", menuServiceCat.getMenuKeyboard());
+                    sendMessage(chatId, "Извините, мы не можем ответить на этот вопрос.");
 
             }
         } else if (update.hasCallbackQuery()) {
@@ -180,17 +183,14 @@ public class ShelterBot extends TelegramLongPollingBot {
      */
 
     private void startCommand(long chatId, String userName, String firstName, String lastName) {
-        String textChat = "Добро пожаловать в бот, %s! %n" +
-                "Здесь Вы сможете узнать о приютах для животных, а так же связаться с волонтером. %n" +
-                "Все необходимые команды вы сможете найти в меню";
         String fullName = userName + " " + firstName + " " + lastName;
         if (userName == null & lastName == null) {
-            var formattedText = String.format(textChat, firstName);
+            var formattedText = String.format(Constants.START_TEXT, firstName);
             sendMessage(chatId, formattedText, menuServiceCat.getMenuKeyboard());
         } else if (fullName == null) {
-            sendMessage(chatId, textChat, menuServiceCat.getMenuKeyboard());
+            sendMessage(chatId, Constants.START_TEXT, menuServiceCat.getMenuKeyboard());
         } else {
-            var formattedText = String.format(textChat, userName);
+            var formattedText = String.format(Constants.START_TEXT, userName);
             sendMessage(chatId, formattedText, menuServiceCat.getMenuKeyboard());
             log.info("Replied to user " + fullName);
         }
@@ -237,10 +237,8 @@ public class ShelterBot extends TelegramLongPollingBot {
      * @param chatId
      */
     private void volunteerCommand(long chatId) {
-        var text = "Повсем вопросам обращайтесь к https://t.me/Axekill93";
-        sendMessage(chatId, text);
+        sendMessage(chatId, Constants.VOLUNTEER);
     }
-
 
 
     /**
