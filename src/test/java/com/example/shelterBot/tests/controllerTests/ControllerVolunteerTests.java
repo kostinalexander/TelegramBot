@@ -1,9 +1,7 @@
 package com.example.shelterBot.tests.controllerTests;
 
 import com.example.shelterBot.controller.VolunteerController;
-import com.example.shelterBot.model.Users;
-import com.example.shelterBot.model.Volunteer;
-import com.example.shelterBot.service.UsersService;
+import com.example.shelterBot.model.people.Volunteer;
 import com.example.shelterBot.service.VolunteerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;

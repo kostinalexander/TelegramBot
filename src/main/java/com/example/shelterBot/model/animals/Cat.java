@@ -1,6 +1,6 @@
 package com.example.shelterBot.model.animals;
 
-import com.example.shelterBot.model.Users;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.model.shelter.ShelterForCats;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -19,7 +19,7 @@ public class Cat extends Animal {
     private ShelterForCats shelterCats;
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner",nullable = true)
     private Users users;
 
     public Cat(String name, int age, String breed) {
@@ -39,6 +39,14 @@ public class Cat extends Animal {
 
     public void setShelterCats(ShelterForCats shelterCats) {
         this.shelterCats = shelterCats;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     @Override

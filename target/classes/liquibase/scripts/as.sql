@@ -77,3 +77,14 @@ drop column telegram_user_id;
 alter table users
     add column telegram_user_id bigint;
 
+--changeset Andrey:24
+create table report
+(
+id serial primary key,
+photo text,
+local_date date,
+report_text text,
+user_id bigint
+);
+
+

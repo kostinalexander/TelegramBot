@@ -1,6 +1,6 @@
 package com.example.shelterBot.service;
 
-import com.example.shelterBot.model.Users;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

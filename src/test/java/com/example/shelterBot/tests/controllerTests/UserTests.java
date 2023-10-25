@@ -1,9 +1,7 @@
 package com.example.shelterBot.tests.controllerTests;
 
 import com.example.shelterBot.controller.UsersController;
-import com.example.shelterBot.model.Users;
-import com.example.shelterBot.model.animals.Cat;
-import com.example.shelterBot.service.CatService;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.service.UsersService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
@@ -20,7 +18,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.only;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
