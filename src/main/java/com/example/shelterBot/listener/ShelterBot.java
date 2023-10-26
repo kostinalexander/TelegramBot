@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -18,6 +19,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,15 +31,15 @@ import static com.example.shelterBot.listener.Constants.DOG_BUTTON;
 @Slf4j
 public class ShelterBot extends TelegramLongPollingBot {
 
-    final BotConfig config;
+    final BotConfig bot;
 
     @Autowired
     private final UsersRepository userRepository;
     private final UsersService usersService;
     private final MenuServiceCat menuServiceCat;
     private final MenuServiceDog menuServiceDog;
-   // private final ReportCatService reportCatService;
-  //  private final ReportDogService reportDogService;
+    private final ReportCatService reportCatService;
+    private final ReportDogService reportDogService;
 
     private Boolean isCat = null;
     private boolean isNextMessageReport = false;
@@ -43,20 +47,20 @@ public class ShelterBot extends TelegramLongPollingBot {
     /**
      * Конструктор, в котором содержится меню для бота с коммандами.
      *
-     * @param config
+     * @param bot
      * @param menuServiceCat
      * @param menuServiceDog
      * @param reportCatService
      * @param reportDogService
      */
-    public ShelterBot(BotConfig config, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog, ReportCatService reportCatService, ReportDogService reportDogService) {
-        this.config = config;
+    public ShelterBot(BotConfig bot, UsersRepository userRepository, UsersService usersService, MenuServiceCat menuServiceCat, MenuServiceDog menuServiceDog, ReportCatService reportCatService, ReportDogService reportDogService) {
+        this.bot = bot;
         this.userRepository = userRepository;
         this.usersService = usersService;
         this.menuServiceCat = menuServiceCat;
         this.menuServiceDog = menuServiceDog;
-       // this.reportCatService = reportCatService;
-      //  this.reportDogService = reportDogService;
+        this.reportCatService = reportCatService;
+        this.reportDogService = reportDogService;
 
         List<BotCommand> commandList = new ArrayList<>();
         commandList.add(new BotCommand("/start", "обновить"));
@@ -76,12 +80,12 @@ public class ShelterBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return config.getBotName();
+        return bot.getBotName();
     }
 
     @Override
     public String getBotToken() {
-        return config.getToken();
+        return bot.getToken();
     }
 
     /**
@@ -98,6 +102,15 @@ public class ShelterBot extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
+
+            if (isNextMessageReport) {
+                var reportText = messageText;
+
+                sendPhoto(update);
+                // reportCatService.save(reportText);  не создает сейв
+                isNextMessageReport = false;
+                return;
+            }
 
             switch (messageText) {
                 case "/start":
@@ -128,6 +141,7 @@ public class ShelterBot extends TelegramLongPollingBot {
 
                 case Constants.REPORT_NOW:
                     sendMessage(chatId, Constants.REPORT);
+                    isNextMessageReport = true;
                     break;
 
                 case Constants.VOLUNTEER_HELP:
@@ -170,7 +184,18 @@ public class ShelterBot extends TelegramLongPollingBot {
             } else if (callBackData.equals(DOG_BUTTON)) {
                 isCat = false;
                 sendMessage(chatId, Constants.DOG_SHELTER, menuServiceDog.getMenuKeyboard());
+            } else if (callBackData.contains(":")) {
+                String[] arguments = callBackData.split(":");
+                var reportId = Long.parseLong((arguments[0]));
+                var userId = Long.parseLong(arguments[1]);
+                if (arguments[2].equals(Constants.ACCEPTED)) {
+
+                } else {
+                    reportCatService.markReport(reportId, false);
+                }
+
             }
+
         }
 
     }
@@ -292,6 +317,20 @@ public class ShelterBot extends TelegramLongPollingBot {
             log.error(Constants.ERROR_TEXT + e.getMessage());
         }
     }
+
+    private void sendPhoto(Update update) throws TelegramApiException {
+        if (update.getMessage().getPhoto() != null) {
+            var photo = update.getMessage().getPhoto().get(3); // 3 - самое лучшее качество
+            var getFile = execute(new GetFile(photo.getFileId()));
+            try (var in = new URL(bot.getgetFullFilePath(getFile.getFileId())).openStream();//здесь ругался на эту строчку пришлось в конфинг добалять fileId
+                 var out = new FileOutputStream(photo.getFileId())) { // для примера просто сделал случайное название файла, лучше прописать путь и расширение
+                in.transferTo(out);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
     private void registerUsers(Update update) {
         var textMessage = update.getMessage();
