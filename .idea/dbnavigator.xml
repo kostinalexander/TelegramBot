@@ -22,6 +22,9 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="1c92ce77-4be6-4149-b658-f99ccd406cb3" dataset="public.report_cat" active-filter-id="EMPTY_FILTER" />
+  </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" connection-id="1c92ce77-4be6-4149-b658-f99ccd406cb3" session-id="MAIN" current-schema="ShelterData" />
   </component>

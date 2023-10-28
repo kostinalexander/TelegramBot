@@ -22,7 +22,12 @@ public class ReportDogService {
         this.reportRepository = reportRepository;
         this.inlineService = inlineService;
     }
-
+    public ReportDog saveReport (String message){
+        ReportDog reportDog=new ReportDog();
+        reportDog.setText(reportDog.getText());
+        reportDog.setPhoto(reportDog.getPhoto());
+        return reportRepository.save(reportDog);
+    }
     public void markReport(long reportId, boolean accepted) {
         ReportDog reportDog=new ReportDog();
         if (accepted == true) {

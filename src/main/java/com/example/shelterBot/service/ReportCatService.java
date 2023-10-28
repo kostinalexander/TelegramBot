@@ -23,6 +23,13 @@ public class ReportCatService {
         this.inlineService = inlineService;
     }
 
+    public ReportCat saveReport (String message){
+        ReportCat reportCat=new ReportCat();
+        reportCat.setText(reportCat.getText());
+        reportCat.setPhoto(reportCat.getPhoto());
+        return reportRepository.save(reportCat);
+    }
+
 
 
     public void markReport(long reportId, boolean accepted) {

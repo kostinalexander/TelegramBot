@@ -81,7 +81,11 @@ report_text text,
 dog_id serial,
 foreign  key (dog_id) references dogs(id)
 );
-
+--changeset andrey:4
+alter table report_cat
+ add column report_checked boolean;
+ alter table report_dog
+ add column report_checked boolean;
 
 
 

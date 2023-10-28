@@ -1,6 +1,7 @@
 package com.example.shelterBot.listener;
 
 import com.example.shelterBot.config.BotConfig;
+import com.example.shelterBot.model.report.ReportDog;
 import com.example.shelterBot.repository.UsersRepository;
 import com.example.shelterBot.service.*;
 import lombok.SneakyThrows;
@@ -104,10 +105,13 @@ public class ShelterBot extends TelegramLongPollingBot {
 
 
             if (isNextMessageReport) {
-                var reportText = messageText;
 
                 sendPhoto(update);
-                // reportCatService.save(reportText);  не создает сейв
+                if (isCat) {
+                    reportCatService.saveReport(messageText);
+                } else {
+                    reportDogService.saveReport(messageText);
+                }
                 isNextMessageReport = false;
                 return;
             }
@@ -150,8 +154,6 @@ public class ShelterBot extends TelegramLongPollingBot {
 
                 case "/shelter":
                     shelterCommand(chatId);
-                    menuCat(chatId);
-                    menuDog(chatId);
                     break;
                 case "/volunteer":
                     volunteerCommand(chatId);
@@ -330,6 +332,7 @@ public class ShelterBot extends TelegramLongPollingBot {
             }
         }
     }
+
 
 
     private void registerUsers(Update update) {
