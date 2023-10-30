@@ -7,10 +7,8 @@
     <list default="true" id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="report на минималках фикс">
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/listener/ShelterBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportCatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportCatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportDogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/service/ReportDogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/ShelterForCats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/ShelterForCats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +45,7 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2X2JodI0XTUOdIGyGkDsVlwF1il" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -78,6 +76,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ShelterBotApplication" />
         <item itemvalue="Application.ShelterBotApplication" />
       </list>
     </recent_temporary>
@@ -160,6 +159,7 @@
     <MESSAGE value="фикс репорта" />
     <MESSAGE value="report на минималках" />
     <MESSAGE value="report на минималках фикс" />
-    <option name="LAST_COMMIT_MESSAGE" value="report на минималках фикс" />
+    <MESSAGE value="мержнул" />
+    <option name="LAST_COMMIT_MESSAGE" value="мержнул" />
   </component>
 </project>

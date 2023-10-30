@@ -23,10 +23,21 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="c3407e95-ac15-4cb6-a730-e6b425d94244" dataset="public.users" active-filter-id="EMPTY_FILTER">
+      <filter id="a1c295ae-2e2d-4d9e-9eec-5892581440d6" name="0" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="0" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="c3407e95-ac15-4cb6-a730-e6b425d94244" dataset="public.dog_shelter" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="c3407e95-ac15-4cb6-a730-e6b425d94244" dataset="public.cats" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="c3407e95-ac15-4cb6-a730-e6b425d94244" dataset="public.shelter_for_cats" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="1c92ce77-4be6-4149-b658-f99ccd406cb3" dataset="public.users" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="1c92ce77-4be6-4149-b658-f99ccd406cb3" dataset="public.report_cat" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/main/resources/liquibase/scripts/as.sql" connection-id="c3407e95-ac15-4cb6-a730-e6b425d94244" session-id="MAIN" current-schema="ShelterData" />
     <mapping file-url="file://$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" connection-id="1c92ce77-4be6-4149-b658-f99ccd406cb3" session-id="MAIN" current-schema="ShelterData" />
+    <mapping file-url="file://$PROJECT_DIR$/src/main/resources/liquibase/scripts/dr.sql" connection-id="c3407e95-ac15-4cb6-a730-e6b425d94244" session-id="MAIN" current-schema="ShelterData" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
