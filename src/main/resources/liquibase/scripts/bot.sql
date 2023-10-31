@@ -18,17 +18,17 @@ create table users
 create table dog_shelter
 (
     id           serial primary key,
-    nameShelter  text,
+    name_shelter  text,
     address      text,
-    workingHours text
+    working_hours text
 );
 
 create table shelter_for_cats
 (
     id           serial primary key,
-    nameShelter  text,
+    name_shelter  text,
     address      text,
-    workingHours text
+    working_hours text
 );
 
 create table cats
@@ -58,7 +58,7 @@ create table dogs
 create table volunteer
 (
     id         serial primary key,
-    first_name TEXT,
+    first_name text,
     lastName   text,
     email      text
 );
@@ -86,6 +86,5 @@ alter table report_cat
  add column report_checked boolean;
  alter table report_dog
  add column report_checked boolean;
-
 
 

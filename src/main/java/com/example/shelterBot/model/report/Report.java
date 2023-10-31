@@ -1,7 +1,9 @@
 package com.example.shelterBot.model.report;
 
-import java.time.LocalDate;
+import jakarta.persistence.MappedSuperclass;
 
+import java.time.LocalDate;
+@MappedSuperclass
 public class Report {
     private String photo;
     private String reportText;

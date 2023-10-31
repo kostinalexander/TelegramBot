@@ -4,24 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="report на минималках фикс">
+    <list default="true" id="d7b84cce-63b9-4f5a-be83-37c7f0ea4772" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/Dr.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_10_2023_19_42__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/ShelterForCats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/ShelterForCats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/listener/ShelterBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/animals/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/animals/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/report/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/Shelter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterBot/model/shelter/Shelter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/bot.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/liquibase/scripts/dr.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Animal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/animals/Animal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/Shelter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/Shelter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/ShelterForCats.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/model/shelter/ShelterForCats.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/CatShService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/shelterBot/service/DogShService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -42,10 +47,10 @@
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2X2JodI0XTUOdIGyGkDsVlwF1il" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectId" id="2XULxId0THQZIvzdSyt4MvOOfD5" />
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -56,8 +61,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature-Andrey&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/TelegramBot&quot;
+    &quot;git-widget-placeholder&quot;: &quot;feature-Andrey&quot;
   }
 }</component>
   <component name="RunManager">
@@ -77,68 +81,18 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ShelterBotApplication" />
-        <item itemvalue="Application.ShelterBotApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="34f8b901-9d9e-4edf-9418-9028e0c9dcd9" name="Changes" comment="" />
-      <created>1697821420179</created>
+      <changelist id="d7b84cce-63b9-4f5a-be83-37c7f0ea4772" name="Changes" comment="" />
+      <created>1698678958926</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1697821420179</updated>
+      <updated>1698678958926</updated>
     </task>
-    <task id="LOCAL-00001" summary="репорт">
-      <option name="closed" value="true" />
-      <created>1697825608737</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1697825608737</updated>
-    </task>
-    <task id="LOCAL-00002" summary="fix report">
-      <option name="closed" value="true" />
-      <created>1698091029840</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1698091029840</updated>
-    </task>
-    <task id="LOCAL-00003" summary="добавил таблицы репорт">
-      <option name="closed" value="true" />
-      <created>1698092327850</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1698092327850</updated>
-    </task>
-    <task id="LOCAL-00004" summary="фикс репорта">
-      <option name="closed" value="true" />
-      <created>1698169492483</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1698169492483</updated>
-    </task>
-    <task id="LOCAL-00005" summary="report на минималках">
-      <option name="closed" value="true" />
-      <created>1698332843118</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1698332843118</updated>
-    </task>
-    <task id="LOCAL-00006" summary="report на минималках фикс">
-      <option name="closed" value="true" />
-      <created>1698333029114</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1698333029114</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,15 +105,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="репорт" />
-    <MESSAGE value="fix report" />
-    <MESSAGE value="добавил таблицы репорт" />
-    <MESSAGE value="фикс репорта" />
-    <MESSAGE value="report на минималках" />
-    <MESSAGE value="report на минималках фикс" />
-    <MESSAGE value="мержнул" />
-    <option name="LAST_COMMIT_MESSAGE" value="мержнул" />
   </component>
 </project>

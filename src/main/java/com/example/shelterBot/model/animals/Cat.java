@@ -4,9 +4,11 @@ import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.model.shelter.ShelterForCats;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "cats")
 public class Cat extends Animal {
@@ -29,20 +31,8 @@ public class Cat extends Animal {
     public Cat() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public ShelterForCats getShelterCats() {
-        return shelterCats;
-    }
-
     public void setShelterCats(ShelterForCats shelterCats) {
         this.shelterCats = shelterCats;
-    }
-
-    public Users getUsers() {
-        return users;
     }
 
     public void setUsers(Users users) {
