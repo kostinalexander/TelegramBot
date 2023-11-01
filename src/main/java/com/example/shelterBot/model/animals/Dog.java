@@ -13,11 +13,11 @@ public class Dog extends Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shelter_dog_id")
     private DogShelter dogShelter;
-    @JsonIgnore
+  //  @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner", nullable = true)
     private Users users;

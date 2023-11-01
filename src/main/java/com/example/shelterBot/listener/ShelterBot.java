@@ -106,7 +106,7 @@ public class ShelterBot extends TelegramLongPollingBot {
 
             if (isNextMessageReport) {
 
-                sendPhoto(update);
+                savePhoto(update);
                 if (isCat) {
                     reportCatService.saveReport(messageText);
                 } else {
@@ -320,11 +320,11 @@ public class ShelterBot extends TelegramLongPollingBot {
         }
     }
 
-    private void sendPhoto(Update update) throws TelegramApiException {
+    private void savePhoto(Update update) throws TelegramApiException {
         if (update.getMessage().getPhoto() != null) {
             var photo = update.getMessage().getPhoto().get(3); // 3 - самое лучшее качество
             var getFile = execute(new GetFile(photo.getFileId()));
-            try (var in = new URL(bot.getgetFullFilePath(getFile.getFileId())).openStream();//здесь ругался на эту строчку пришлось в конфинг добалять fileId
+            try (var in = new URL(getFile.getFileUrl(bot.getToken())).openStream();//здесь ругался на эту строчку пришлось в конфинг добалять fileId
                  var out = new FileOutputStream(photo.getFileId())) { // для примера просто сделал случайное название файла, лучше прописать путь и расширение
                 in.transferTo(out);
             } catch (IOException e) {

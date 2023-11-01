@@ -39,7 +39,7 @@ create table cats
     breed           text,
     shelter_cats_id serial,
     foreign key (shelter_cats_id) references shelter_for_cats (id),
-    owner           serial,
+    owner           int null,
     foreign key (owner) references users (id)
 );
 
@@ -51,7 +51,7 @@ create table dogs
     breed          text,
     shelter_dog_id serial,
     foreign key (shelter_dog_id) references dog_shelter (id),
-    owner          serial,
+    owner          int null,
     foreign key (owner) references users (id)
 );
 
