@@ -21,7 +21,7 @@ public class ReportDog extends Report {
     @JoinColumn(name = "dog_id")
     private Dog dog;
 
-    public ReportDog(String photo, String text, LocalDate localDate, Boolean reportChecked) {
+    public ReportDog(byte[] photo, String text, LocalDate localDate, Boolean reportChecked) {
         super(photo, text, localDate);
         this.reportChecked = null;
     }

@@ -32,12 +32,12 @@ public class InlineService {
         var button1 = new InlineKeyboardButton();
         button1.setText(Constants.ACCEPTED);
         button1.setCallbackData(unch.getId() + ":" + unch.getCat().getUsers().getId() + ":"
-                + Constants.ACCEPTED);
+                + Constants.ACCEPTED + ":cat");
 
         var button2 = new InlineKeyboardButton();
         button2.setText(Constants.NOT_ACCEPTED);
         button2.setCallbackData(unch.getId() + ":" + unch.getCat().getUsers().getId() + ":"
-                + Constants.NOT_ACCEPTED);
+                + Constants.NOT_ACCEPTED + ":cat");
 
         rowInline.add(button1);
         rowInline.add(button2);
@@ -58,12 +58,12 @@ public class InlineService {
         var button1 = new InlineKeyboardButton();
         button1.setText(Constants.ACCEPTED);
         button1.setCallbackData(unch.getId() + ":" + unch.getDog().getUsers().getId() + ":"
-                + Constants.ACCEPTED);
+                + Constants.ACCEPTED + ":dog");
 
         var button2 = new InlineKeyboardButton();
         button2.setText(Constants.NOT_ACCEPTED);
         button2.setCallbackData(unch.getId() + ":" + unch.getDog().getUsers().getId() + ":"
-                + Constants.NOT_ACCEPTED);
+                + Constants.NOT_ACCEPTED + ":dog");
 
         rowInline.add(button1);
         rowInline.add(button2);

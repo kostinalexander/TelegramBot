@@ -5,11 +5,11 @@ import jakarta.persistence.MappedSuperclass;
 import java.time.LocalDate;
 @MappedSuperclass
 public class Report {
-    private String photo;
+    private byte[] photo;
     private String reportText;
     private LocalDate localDate;
 
-    public Report(String photo, String reportText, LocalDate localDate ) {
+    public Report(byte[] photo, String reportText, LocalDate localDate ) {
         this.photo = photo;
         this.reportText = reportText;
         this.localDate = localDate;
@@ -18,12 +18,20 @@ public class Report {
     public Report() {
     }
 
-    public String getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    public String getReportText() {
+        return reportText;
+    }
+
+    public void setReportText(String reportText) {
+        this.reportText = reportText;
     }
 
     public String getText() {

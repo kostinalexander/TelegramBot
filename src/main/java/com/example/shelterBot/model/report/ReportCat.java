@@ -24,7 +24,7 @@ public class ReportCat extends Report {
 
 
 
-    public ReportCat(String photo, String text, LocalDate localDate,Boolean reportChecked) {
+    public ReportCat(byte[] photo, String text, LocalDate localDate,Boolean reportChecked) {
         super(photo, text, localDate);
         this.reportChecked=false;
     }
