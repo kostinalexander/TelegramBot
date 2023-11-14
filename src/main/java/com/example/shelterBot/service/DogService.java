@@ -21,7 +21,7 @@ public class DogService {
     }
 
     public Dog findDog(Long id){
-        return repository.getById(id);
+        return repository.findById(id).orElse(null);
     }
 
     public Dog editDog(Dog dog) {

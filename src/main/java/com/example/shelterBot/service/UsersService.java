@@ -1,11 +1,12 @@
 package com.example.shelterBot.service;
 
-import com.example.shelterBot.model.Users;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Service
@@ -22,17 +23,18 @@ public class UsersService {
         return (Collection<Users>) repository.findAll();
     }
 
-    public Users findOrSaveUsers(User telegramUser) {
+    public boolean ifUserExists(User telegramUser) {
         Users persistentUser = repository.findUsersByTelegramUserId(telegramUser.getId());
         if (persistentUser == null) {
             Users transientUser = new Users();
             transientUser.setTelegramUserId(telegramUser.getId());
             transientUser.setFirstName(telegramUser.getFirstName());
             transientUser.setLastName(telegramUser.getLastName());
-            return repository.save(transientUser);
+            transientUser.setFirstLoginDate(LocalDateTime.now());
+            repository.save(transientUser);
+            return false;
         }
-
-        return persistentUser;
+        return true;
     }
 
     public Users addUser(Users users) {

@@ -19,7 +19,7 @@ public class CatService {
         return repository.save(cat);
     }
     public Cat findCat(Long id) {
-        return repository.getById(id);
+        return repository.findById(id).orElse(null);
     }
 
     public Cat editCat(Cat cat) {
@@ -31,7 +31,7 @@ public class CatService {
                 }).orElse(null);
     }
     public void deleteCat(Long id) {
-        repository.deleteById(id);
+         repository.deleteById(id);
     }
 
     public Collection<Cat> getAll(){

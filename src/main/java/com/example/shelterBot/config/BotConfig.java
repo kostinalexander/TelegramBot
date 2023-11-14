@@ -16,4 +16,7 @@ public class BotConfig {
     @Value("${bot.key}")
     String token;
 
+    public String getgetFullFilePath(String fileId) {
+        return fileId;
+    }
 }
