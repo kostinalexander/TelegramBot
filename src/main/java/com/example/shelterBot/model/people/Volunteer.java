@@ -1,4 +1,4 @@
-package com.example.shelterBot.model;
+package com.example.shelterBot.model.people;
 
 import jakarta.persistence.*;
 

@@ -1,25 +1,27 @@
 package com.example.shelterBot.model.animals;
 
-import com.example.shelterBot.model.Users;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.model.shelter.ShelterForCats;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "cats")
 public class Cat extends Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @JsonIgnore
+  //  @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shelter_cats_id")
     private ShelterForCats shelterCats;
-    @JsonIgnore
+  //  @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner",nullable = true)
     private Users users;
 
     public Cat(String name, int age, String breed) {
@@ -29,16 +31,12 @@ public class Cat extends Animal {
     public Cat() {
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public ShelterForCats getShelterCats() {
-        return shelterCats;
-    }
-
     public void setShelterCats(ShelterForCats shelterCats) {
         this.shelterCats = shelterCats;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     @Override

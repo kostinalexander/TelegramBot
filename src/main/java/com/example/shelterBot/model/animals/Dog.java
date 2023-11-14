@@ -1,6 +1,6 @@
 package com.example.shelterBot.model.animals;
 
-import com.example.shelterBot.model.Users;
+import com.example.shelterBot.model.people.Users;
 import com.example.shelterBot.model.shelter.DogShelter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -13,13 +13,13 @@ public class Dog extends Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @JsonIgnore
+   // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "shelter_dog_id")
     private DogShelter dogShelter;
-    @JsonIgnore
+  //  @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "owner")
+    @JoinColumn(name = "owner", nullable = true)
     private Users users;
 
     public Dog(String name, int age, String breed) {

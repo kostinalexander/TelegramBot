@@ -1,5 +1,8 @@
 package com.example.shelterBot.model.animals;
 
+import jakarta.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Animal {
     private String name;
     private int age;

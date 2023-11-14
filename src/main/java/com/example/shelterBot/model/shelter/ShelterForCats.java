@@ -4,9 +4,9 @@ import com.example.shelterBot.model.animals.Cat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
+
 
 @Entity
 @Table(name = "shelter_for_cats")
@@ -18,7 +18,7 @@ public class ShelterForCats extends Shelter {
     @OneToMany(mappedBy = "shelterCats")
     private List<Cat> cats;
 
-    public ShelterForCats(String nameShelter, String address, LocalTime workingHours) {
+    public ShelterForCats(String nameShelter, String address, String workingHours) {
         super(nameShelter, address, workingHours);
     }
 
@@ -30,12 +30,12 @@ public class ShelterForCats extends Shelter {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public List<Cat> getCats() {
         return cats;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setCats(List<Cat> cats) {
@@ -59,7 +59,7 @@ public class ShelterForCats extends Shelter {
     public String toString() {
         return "ShelterForCats{" +
                 "id=" + id +
-                super.toString()+
+                super.toString() +
                 ", cats=" + cats +
                 '}';
     }

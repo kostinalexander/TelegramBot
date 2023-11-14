@@ -23,7 +23,8 @@ public class CatShService {
     }
 
     public ShelterForCats findShelterForCats(Long id){
-        return repository.getById(id);
+
+        return repository.findById(id).orElse(null);
     }
 
     public ShelterForCats editCatShelter(ShelterForCats shelterForCats) {
